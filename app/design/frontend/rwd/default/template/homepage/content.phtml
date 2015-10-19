@@ -10,21 +10,34 @@
                 <option value="college">College</option>
                 <option value="university">University</option>
             </select>
+            
             <select name="stream">
                 <option>Select</option>
                 <option value="play-school">Play School</option>
                 <option value="primary-school">Primary School</option>
                 <option value="upper-primary-school">Upper Primary School</option>
+
+                <option value="-">---</option>
+                
+                <option value="">Civil Services</option>
+                <option value="">Engg. Institutes</option>
+                <option value="">Medical Institutes</option>
+                <option value="">IIT JEE Main</option>
+                <option value="">Competition Classess</option>
+                <option value="">Academic Coaching Institutes</option>
+                <option value="">Law Institutes</option>
+                
+                <option value="-">---</option>
                 
                 <option value="science-engg">Science & Engineering</option>
                 <option value="medical-nursing">Medical/Nursing</option>
                 <option value="bed">B.Ed/STC</option>
                 <option value="bed">PG & Management</option>
-            </select>
-            <select name="Courses">
+             </select>
+            <?php /*?><select name="Courses">
                 <option>Select Course</option>
                 <option>Option 1</option>
-            </select>
+            </select><?php */?>
             
 			<?php	//	Showing states
 			$stateCollection = Mage::getModel('directory/country')->load('IN')->getRegions()->toOptionArray();
