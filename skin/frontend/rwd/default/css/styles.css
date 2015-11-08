@@ -2068,14 +2068,9 @@ span.weee {
   margin-left: 2em;
 }
 
-.std ul {
-  list-style: disc outside;
-  margin-bottom: 1.5em;
-}
+.std ul {}
 
-.std ul li {
-  margin-left: 2em;
-}
+.std ul li {}
 
 .std .note {
   color: #a0a0a0;
