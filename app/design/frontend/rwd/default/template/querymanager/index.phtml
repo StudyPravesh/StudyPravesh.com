@@ -1,0 +1,143 @@
+<div>
+  <div>
+    <div>
+      <h4>Query for apply</h4>
+      <form method="post" id="query_form">
+        <h5>
+          <p>Your Name *</p>
+          <input type="text" required="" value="" placeholder="Your Name" id="name" name="name">
+        </h5>
+        <h5>
+          <p>Email ID  *</p>
+          <input type="text" required="" value="" placeholder="Email" id="email" name="email">
+        </h5>
+        <h5>
+          <p>State *</p>
+          <?php	$stateCollection = Mage::getModel('directory/country')->load('IN')->getRegions()->toOptionArray();
+			//echo '<pre>';print_r($stateCollection);die;
+			if (count($stateCollection) > 0){ ?>
+          <select name="state" id="state" requried="">
+            <?php foreach($stateCollection as $state): ?>
+            <option value="<?php echo $state['value'] ?>"> <?php echo $state['label'] ?> </option>
+            <?php endforeach; ?>
+          </select>
+          <?php } ?>
+        </h5>
+        <h5>
+          <p>City *</p>
+          <select name="city" id="city">
+            <option value="">Select City</option>
+            <option value="185736">Ajmer</option>
+            <option value="185737">Alwar</option>
+            <option value="185738">Bharatpur</option>
+            <option value="185739">Bhilwara</option>
+            <option value="185740">Bhiwadi</option>
+            <option value="185741">Bikaner</option>
+            <option value="185742">Deogarh (Rajasthan)</option>
+            <option value="185743">Jaipur</option>
+            <option value="185744">Jhunjhunu / Churu</option>
+            <option value="185745">Jodhpur</option>
+            <option value="185746">Kota</option>
+            <option value="185747">Pilani</option>
+            <option value="185748">Pratapgarh</option>
+            <option value="185749">Rajasthan - Other</option>
+            <option value="185750">Rajpura - Rajasthan</option>
+            <option value="185751">Sikar</option>
+            <option value="185752">Tonk</option>
+            <option value="185753">Udaipur</option>
+          </select>
+        </h5>
+        <h5>
+          <p>Mobile *</p>
+          <input type="text" required="" value="" id="mobile" placeholder="Mobile" name="mobile">
+        </h5>
+        <h5>
+          <p>Course Applied For *</p>
+          <input type="text" required="" id="courses" placeholder="Type Your Course Name Here" name="courses">
+        </h5>
+        <h5>
+          <p>Message *</p>
+          <textarea required="" id="message" name="message"></textarea>
+        </h5>
+        <input type="submit" class="btn" value="Enquire Now" name="ask-btn">
+      </form>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+
+	<?php
+    $address         = Mage::getSingleton('checkout/session')->getQuote()->getBillingAddress();
+    $defaultCity     = 'Jaipur';		//$address->getCity();
+    ?>
+    Event.observe($('state'), 'change', function(event) {
+        var action = "<?php echo $this->getUrl('querymanager/index/getCities'); ?>";
+        var defaultCity = '<?php echo  $defaultCity ?>';
+        //var selectCountry = $('billing:country_id').value;
+        //if(selectCountry == "ES") {
+            var action = "<?php echo $this->getUrl('querymanager/index/getCities'); ?>";
+            var stateId = $('state').value;
+			//alert(stateId);
+            var request = new Ajax.Request(action,
+                {
+                    method: 'GET',
+                    onSuccess: function (data) {
+						//alert(data.responseText);
+						//var data = jQuery.parseJSON(data);
+                        $('city').replace('<select id="city" name="city" class="required-entry">' + '<option value=""></option>' + data.responseText + '</select>');
+                    },
+                    onFailure: '',
+                    parameters: {state_id: stateId, default_city: defaultCity}
+                }
+            );
+       // }
+
+    });
+   /* Event.observe($('state'), 'change', function(event) {
+        var selectCountry = $('state').value;
+        var defaultCity = '<?php echo  $defaultCity ?>';
+        //if(selectCountry != "ES"){
+            $('city').replace('<input type="text" class=" input-text required-entry absolute-advice " title="City" value="' + defaultCity + '" id="billing:city" name="billing[city]" autocomplete="off">');
+        //}
+    });*/
+	
+	
+	
+    <?php /*?><?php
+    $helper          = Mage::helper('querymanager');
+    //$defaultCity     = 'Jaipur';
+    $citiesOptions   = addslashes($helper->getUaeCitiesAsDropdown($defaultCity));
+    ?>
+ 
+    var billingCity = '<?php echo $defaultCity ; ?>';
+    function billingSwitchCityField(){
+        var selectVal = jQuery('#state option:selected').val();
+        //if(selectVal == "513"){
+            jQuery("#city")
+            .replaceWith('<select id="city" name="city" class="required-entry">' +
+                  '<option value="">Please Select City</option>' +
+                  '<?php echo $citiesOptions; ?>' +
+                '</select>');
+        /*}else{
+            jQuery("#billing\\:city")
+            .replaceWith('<input type="text" class=" input-text required-entry absolute-advice " title="City" value="' + billingCity + '" id="billing:city" name="billing[city]" autocomplete="off">');
+        }
+ 
+    }
+   jQuery(document).ready(function(){
+        billingSwitchCityField();
+        jQuery('#state').change(function() {
+            billingSwitchCityField();
+        });
+   })<?php */?>
+</script>
+
+
+
+<?php /*?>http://magento.stackexchange.com/questions/42662/create-a-city-dropdown-problem-with-ajax
+CREATE TABLE `cities` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`state_id` int(11) NOT NULL,
+`city_name` varchar(100) NOT NULL,
+PRIMARY KEY (`id`));<?php */?>

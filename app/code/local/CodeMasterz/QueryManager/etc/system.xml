@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+	  <tabs>
+		<codemasterz_all translate="label" module="querymanager">
+            <label>CodeMasterz Extensions</label>
+            <sort_order>1</sort_order>
+        </codemasterz_all>
+		<codemasterz_info translate="label" module="querymanager">
+            <label>CodeMasterz Info</label>
+            <sort_order>2</sort_order>
+        </codemasterz_info>
+	  </tabs>
+</config>

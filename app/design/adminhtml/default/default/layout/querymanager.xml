@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <querymanager_adminhtml_querymanager_index>
+	<reference name="content">
+	  <block type="querymanager/adminhtml_querymanager" name="querymanager" />
+	</reference>
+  </querymanager_adminhtml_querymanager_index>
+</layout>
