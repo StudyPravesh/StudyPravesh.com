@@ -146,116 +146,11 @@
       <div class="row p0"><img style="max-width: 100%;" alt="" src="{{skin url='images/how-it-works.jpg'}}" /></div>
     </div>
     
-    <?php 
-	//echo $this->getLayout()->createBlock('reports/product_viewed')->setTemplate('reports/product_viewed.phtml')->toHtml(); ?>
-    
     <div class="full-width mT10">
       <div class="row p0">
         <div class="left-content">
         	<?php echo $this->getLayout()->createBlock('catalog/product_mostviewed')->setTemplate('catalog/product/mostviewed.phtml')->toHtml();?>
-          	<div class="full-width mB10">
-			  <div class="heading full-width">Recently Viewed Schools</div>
-			  <div class="content-box mB10">
-				<ul class="featured product-boxes">
-				  <li>
-					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
-					<div class="detail-box full-width">
-					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
-					</div>
-				  </li>
-				  <li>
-					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
-					<div class="detail-box full-width">
-					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
-					</div>
-				  </li>
-				  <li>
-					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
-					<div class="detail-box full-width">
-					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
-					</div>
-				  </li>
-				</ul>
-			  </div>
-			</div>
-			
-			<div class="full-width mB10">
-			  <div class="heading full-width">Recently Viewed Colleges</div>
-			  <div class="content-box mB10">
-				<ul class="featured product-boxes">
-				  <li>
-					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
-					<div class="detail-box full-width">
-					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
-					</div>
-				  </li>
-				  <li>
-					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
-					<div class="detail-box full-width">
-					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
-					</div>
-				  </li>
-				  <li>
-					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
-					<div class="detail-box full-width">
-					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
-					</div>
-				  </li>
-				</ul>
-			  </div>
-			</div>
-
-			<div class="full-width mB10">
-			  <div class="heading full-width">Recently Viewed Institutes</div>
-			  <div class="content-box mB10">
-				<ul class="featured product-boxes">
-				  <li>
-					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
-					<div class="detail-box full-width">
-					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
-					</div>
-				  </li>
-				  <li>
-					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
-					<div class="detail-box full-width">
-					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
-					</div>
-				  </li>
-				  <li>
-					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
-					<div class="detail-box full-width">
-					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
-					</div>
-				  </li>
-				</ul>
-			  </div>
-			</div>
-
-			<div class="full-width mB10">
-			  <div class="heading full-width">Recently Viewed Universities</div>
-			  <div class="content-box mB10">
-				<ul class="featured product-boxes">
-				  <li>
-					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
-					<div class="detail-box full-width">
-					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
-					</div>
-				  </li>
-				  <li>
-					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
-					<div class="detail-box full-width">
-					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
-					</div>
-				  </li>
-				  <li>
-					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
-					<div class="detail-box full-width">
-					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
-					</div>
-				  </li>
-				</ul>
-			  </div>
-			</div>
+            <?php echo $this->getLayout()->createBlock('reports/product_viewed')->setTemplate('reports/product_viewed.phtml')->toHtml(); ?>
         </div>
         <div class="right-content">
           <div class="heading full-width">Testimonials</div>
@@ -263,7 +158,7 @@
             <div class="full-width border-box-1px p10">
               <ul class="testimonials">
                 <li>
-                  <div class="tm-img full-width"><span><img style="max-width: 100%;" alt="" src="{{skin url='images/tm-img.jpg'}}" /></span></div>
+                  <div class="tm-img full-width"><span><img style="max-width: 100%;" alt="" src="<?php echo $this->getSkinUrl('images/tm-img.jpg');?>" /></span></div>
                   <div class="tm-detail full-width">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur</div>
                   <div class="tm-name full-width">-Nick</div>
                 </li>
