@@ -2,20 +2,20 @@
   <div class="full-width">
     <div class="row p0">
       <div class="home-filter">
-        <form>
-            <select name="browse-by">
+        <form action="colleges.html?cat=3&course=10&state=6&city=7" method="post">
+            <select name="cat">
                 <option>Browse by</option>
-                <option value="school">School</option>
-                <option value="coaching">Coaching</option>
-                <option value="college">College</option>
-                <option value="university">University</option>
+                <option value="21">School</option>
+                <option value="11">Coaching</option>
+                <option value="3">College</option>
+                <option value="24">University</option>
             </select>
             
-            <select name="stream">
+            <select name="course">
                 <option>Select</option>
-                <option value="play-school">Play School</option>
-                <option value="primary-school">Primary School</option>
-                <option value="upper-primary-school">Upper Primary School</option>
+                <option value="18">Play School</option>
+                <option value="19">Primary School</option>
+                <option value="20">Upper Primary School</option>
 
                 <option value="-">---</option>
                 
@@ -145,10 +145,15 @@
     <div class="how-it-works full-width mB10 mT10">
       <div class="row p0"><img style="max-width: 100%;" alt="" src="{{skin url='images/how-it-works.jpg'}}" /></div>
     </div>
+    
+    <?php 
+	//echo $this->getLayout()->createBlock('reports/product_viewed')->setTemplate('reports/product_viewed.phtml')->toHtml(); ?>
+    
     <div class="full-width mT10">
       <div class="row p0">
         <div class="left-content">
-          <div class="full-width mB10">
+        	<?php echo $this->getLayout()->createBlock('catalog/product_mostviewed')->setTemplate('catalog/product/mostviewed.phtml')->toHtml();?>
+          	<div class="full-width mB10">
 			  <div class="heading full-width">Recently Viewed Schools</div>
 			  <div class="content-box mB10">
 				<ul class="featured product-boxes">
