@@ -2056,7 +2056,7 @@ span.weee {
  * Standard Formatted Text Block
  */
 .std p {
-  margin: 0 0 1.5em;
+  
 }
 
 .std ol {
@@ -10658,8 +10658,11 @@ div.calendar table td.button {
 .home .main-content .left-content .heading, .home .main-content .right-content .heading{font-size:18px; border-bottom:1px solid #273b4f; padding:10px 0px; color:#273b4f; margin-bottom:10px;}
 .home .main-content .left-content .product-boxes li{width:32%; float:left; margin-right:2%; margin-bottom:2%; box-sizing:border-box; border:1px solid #cccccc; background:#eaeaea}
 .home .main-content .left-content .product-boxes li:nth-child(3n){margin-right:0px;}
+.home .main-content .left-content .product-boxes li .image-box{background:#ffffff;}
 .home .main-content .left-content .product-boxes li .image-box img{max-width:100%}
+.home .main-content .left-content .product-boxes li .detail-box{min-height:102px;}
 .home .main-content .left-content .product-boxes li .detail-box .name{font-size:14px; padding:20px; text-align:center}
+.home .main-content .left-content .product-boxes li .old-price{display:none;}
 
 .home .main-content .right-content .news li{border-bottom:1px solid #cccccc; width:100%; float:left}
 .home .main-content .right-content .news li .date span{float:left; padding:2px 5px; background:#179bd7; color:#ffffff; font-size:12px;}
