@@ -101,11 +101,12 @@ class CodeMasterz_QueryManager_Block_Adminhtml_Querymanager_Grid extends Mage_Ad
 		static public function getOptionArray1()
 		{
             $data_array=array(); 
-			$data_array[0]='Admission';
+			$data_array[0]='Query for Apply';
 			$data_array[1]='Inquiry';
 			$data_array[2]='Call Back';
             return($data_array);
 		}
+		
 		static public function getValueArray1()
 		{
             $data_array=array();
@@ -113,7 +114,6 @@ class CodeMasterz_QueryManager_Block_Adminhtml_Querymanager_Grid extends Mage_Ad
                $data_array[]=array('value'=>$k,'label'=>$v);		
 			}
             return($data_array);
-
 		}
 		
 		static public function getOptionArray6()
@@ -122,6 +122,7 @@ class CodeMasterz_QueryManager_Block_Adminhtml_Querymanager_Grid extends Mage_Ad
 			$data_array[0]='State';
             return($data_array);
 		}
+		
 		static public function getValueArray6()
 		{
             $data_array=array();

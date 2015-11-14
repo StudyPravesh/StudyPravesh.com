@@ -115,57 +115,7 @@
 
             <?php echo $this->getChildHtml('related_products') ?>
 			</div>
-			<div class="full-width quick-apply">
-				<div class="full-width" style="border:1px solid #cccccc;">
-					<div class="heading full-width">
-							<h1>Query for Apply</h1>
-					</div>
-					<form>
-					<div class="full-width pL10 pR10">
-						<div class="input-box full-width">
-							<label>First Name</label>
-							<input type="text" name="first-name" placeholder="First Name">
-						</div>
-						<div class="input-box full-width">
-							<label>Last Name</label>
-							<input type="text" name="first-name" placeholder="First Name">
-						</div>
-						<div class="input-box full-width">
-							<label>Email Id</label>
-							<input type="text" name="first-name" placeholder="First Name">
-						</div>
-						<div class="input-box full-width">
-							<label>State</label>
-							<select>
-								<option>state 1</option>
-								<option>state 2</option>
-								<option>state 3</option>
-							</select>
-						</div>
-						<div class="input-box full-width">
-							<label>City</label>
-							<select>
-								<option>city 1</option>
-								<option>city 2</option>
-								<option>city 3</option>
-							</select>
-						</div>
-						<div class="input-box full-width">
-							<label>Mobile</label>
-							<input type="text" name="first-name" placeholder="First Name">
-						</div>
-						<div class="input-box full-width">
-							<label>Course</label>
-							<input type="text" name="first-name" placeholder="First Name">
-						</div>
-						<div class="input-box full-width">
-							<label>Message</label>
-							<textarea></textarea>
-						</div>
-						</div>
-					</form>
-				</div>
-			</div>
+            
             <div class="clearer"></div>
             <?php if ($_product->isSaleable() && $this->hasOptions()):?>
                 <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
@@ -222,6 +172,8 @@
             }.bind(productAddToCartForm);
         //]]>
         </script>
+        
+        <?php echo $this->getLayout()->createBlock('querymanager/index')->setTemplate('querymanager/index.phtml')->toHtml();?>
     </div>
 
     <div class="product-collateral toggle-content tabs">

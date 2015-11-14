@@ -1,72 +1,99 @@
-<div>
-  <div>
-    <div>
-      <h4>Query for apply</h4>
-      <form method="post" id="query_form">
-        <h5>
-          <p>Your Name *</p>
-          <input type="text" required="" value="" placeholder="Your Name" id="name" name="name">
-        </h5>
-        <h5>
-          <p>Email ID  *</p>
-          <input type="text" required="" value="" placeholder="Email" id="email" name="email">
-        </h5>
-        <h5>
-          <p>State *</p>
-          <?php	$stateCollection = Mage::getModel('directory/country')->load('IN')->getRegions()->toOptionArray();
-			//echo '<pre>';print_r($stateCollection);die;
-			if (count($stateCollection) > 0){ ?>
-          <select name="state" id="state" requried="">
-            <?php foreach($stateCollection as $state): ?>
-            <option value="<?php echo $state['value'] ?>"> <?php echo $state['label'] ?> </option>
-            <?php endforeach; ?>
-          </select>
-          <?php } ?>
-        </h5>
-        <h5>
-          <p>City *</p>
-          <select name="city" id="city">
-            <option value="">Select City</option>
-            <option value="185736">Ajmer</option>
-            <option value="185737">Alwar</option>
-            <option value="185738">Bharatpur</option>
-            <option value="185739">Bhilwara</option>
-            <option value="185740">Bhiwadi</option>
-            <option value="185741">Bikaner</option>
-            <option value="185742">Deogarh (Rajasthan)</option>
-            <option value="185743">Jaipur</option>
-            <option value="185744">Jhunjhunu / Churu</option>
-            <option value="185745">Jodhpur</option>
-            <option value="185746">Kota</option>
-            <option value="185747">Pilani</option>
-            <option value="185748">Pratapgarh</option>
-            <option value="185749">Rajasthan - Other</option>
-            <option value="185750">Rajpura - Rajasthan</option>
-            <option value="185751">Sikar</option>
-            <option value="185752">Tonk</option>
-            <option value="185753">Udaipur</option>
-          </select>
-        </h5>
-        <h5>
-          <p>Mobile *</p>
-          <input type="text" required="" value="" id="mobile" placeholder="Mobile" name="mobile">
-        </h5>
-        <h5>
-          <p>Course Applied For *</p>
-          <input type="text" required="" id="courses" placeholder="Type Your Course Name Here" name="courses">
-        </h5>
-        <h5>
-          <p>Message *</p>
-          <textarea required="" id="message" name="message"></textarea>
-        </h5>
-        <input type="submit" class="btn" value="Enquire Now" name="ask-btn">
+<div class="full-width quick-apply" id="ajaxData">
+    <div class="full-width" style="border:1px solid #cccccc;">
+        <div class="heading full-width"><h1>Query for Apply</h1></div>
+        <form method="post" name="queryFrm" id="queryFrm" action="">
+        <div class="full-width pL10 pR10">
+            <div class="input-box full-width">
+                <label>Your Name <span class="star">*</span></label>
+                <input class="input-text required-entry" type="text" required="" value="" placeholder="Your Name" id="name" name="name">
+            </div>
+            
+            <div class="input-box full-width">
+                <label>Email Id <span class="star">*</span></label>
+                <input class="required-entry validate-email" type="email" required="" value="" placeholder="Email" id="email" name="email">
+            </div>
+            
+            <div class="input-box full-width">
+                <label>State <span class="star">*</span></label>
+                <?php	$stateCollection = Mage::getModel('directory/country')->load('IN')->getRegions()->toOptionArray();
+					//echo '<pre>';print_r($stateCollection);die;
+					if (count($stateCollection) > 0){ ?>
+				  <select class="required-entry" name="state" id="state" requried="">
+					<?php foreach($stateCollection as $state): ?>
+					<option value="<?php echo $state['value'] ?>"> <?php echo $state['label'] ?> </option>
+					<?php endforeach; ?>
+				  </select>
+				<?php } ?>
+            </div>
+            <div class="input-box full-width">
+                <label>City <span class="star">*</span></label>
+                <select class="required-entry" name="city" id="city">
+                    <option value="">Select City</option>
+                    <option value="185736">Ajmer</option>
+                    <option value="185737">Alwar</option>
+                    <option value="185738">Bharatpur</option>
+                    <option value="185739">Bhilwara</option>
+                    <option value="185740">Bhiwadi</option>
+                    <option value="185741">Bikaner</option>
+                    <option value="185742">Deogarh (Rajasthan)</option>
+                    <option value="185743">Jaipur</option>
+                    <option value="185744">Jhunjhunu / Churu</option>
+                    <option value="185745">Jodhpur</option>
+                    <option value="185746">Kota</option>
+                    <option value="185747">Pilani</option>
+                    <option value="185748">Pratapgarh</option>
+                    <option value="185749">Rajasthan - Other</option>
+                    <option value="185750">Rajpura - Rajasthan</option>
+                    <option value="185751">Sikar</option>
+                    <option value="185752">Tonk</option>
+                    <option value="185753">Udaipur</option>
+                  </select>
+            </div>
+            <div class="input-box full-width">
+                <label>Mobile </label>
+                <input type="text" value="" id="mobile" placeholder="Mobile" name="mobile">
+            </div>
+            <div class="input-box full-width">
+                <label>Course <span class="star">*</span></label>
+                <input type="text" required="" id="courses" placeholder="Type Your Course Name Here" name="courses">
+            </div>
+            <div class="input-box full-width">
+                <label>Message <span class="star">*</span></label>
+                <textarea class="required-entry" required="" id="message" name="message"></textarea>
+            </div>
+            </div>
+        	<input class="btn" type="submit" name="submit" value="Enquire Now" />
       </form>
     </div>
-  </div>
 </div>
 <script type="text/javascript">
 
+	var customForm = new VarienForm('queryFrm');
 
+	jQuery('#queryFrm').on('submit', function(e) {
+		e.preventDefault();
+		if(customForm.validator.validate()) {
+			var url =  '<?php echo Mage::getBaseUrl();?>querymanager/index/ajaxPost';
+			var dataString = jQuery(this).serialize();
+			jQuery.ajax({
+				type: 'POST',
+				url: url,
+				data: dataString
+			})
+			.done(function(result,textStatus){
+				if(textStatus == 'success'){          
+					jQuery("#ajaxData").html(result);
+				}
+			})
+			.fail(function(){         
+				// just in case posting your form failed
+				//alert( "Posting failed." );             
+			});			 
+			// to prevent refreshing the whole page page
+			return false;
+		}
+	});	
+	
 	<?php
     $address         = Mage::getSingleton('checkout/session')->getQuote()->getBillingAddress();
     $defaultCity     = 'Jaipur';		//$address->getCity();
