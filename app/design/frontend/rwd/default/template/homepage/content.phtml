@@ -73,45 +73,69 @@
         <div class="left-content">
 			<div class="full-width mB10">
 			  <div class="heading full-width">Featured Schools, Colleges, Institutes and Universities</div>
-			  <div class="content-box mB10">
-				<ul class="featured product-boxes">
+			  <div class="content-box full-width mB10">
+				<ul class="featured product-boxes" id="featured-box">
 				  <li>
+					  <div class="li-holder">
+						<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
+						<div class="detail-box full-width">
+						  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
+						</div>
+					  </div>
+				  </li>
+				  <li>
+					<div class="li-holder">
 					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
 					<div class="detail-box full-width">
 					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
 					</div>
+					</div>
 				  </li>
 				  <li>
+				  <div class="li-holder">
 					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
 					<div class="detail-box full-width">
 					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
 					</div>
+					</div>
 				  </li>
 				  <li>
+				  <div class="li-holder">
 					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
 					<div class="detail-box full-width">
 					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
 					</div>
+					</div>
 				  </li>
 				  <li>
+				  <div class="li-holder">
 					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
 					<div class="detail-box full-width">
 					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
 					</div>
+					</div>
 				  </li>
 				  <li>
+				  <div class="li-holder">
 					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
 					<div class="detail-box full-width">
 					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
 					</div>
-				  </li>
-				  <li>
-					<div class="image-box full-width"><img title="Linen Blazer" alt="Linen Blazer" src="{{media url='wysiwyg/Womenpantsimg.jpg'}}" /></div>
-					<div class="detail-box full-width">
-					  <div class="name">H.R. Institute of Technology, Ghaziabad</div>
 					</div>
 				  </li>
 				</ul>
+				<script type="text/javascript">
+				jQuery(document).ready(function(){
+					jQuery('#featured-box').slick({
+						arrows			: 	true,
+						dots			: 	false,
+						slidesToShow	: 	3,
+						slidesToScroll	: 	1,
+						autoplay: true,
+						autoplaySpeed: 5000
+					});
+				});
+				</script>
 			  </div>
 			</div>
         </div>
@@ -156,13 +180,46 @@
           <div class="heading full-width">Testimonials</div>
           <div class="content-box">
             <div class="full-width border-box-1px p10">
-              <ul class="testimonials">
+              <ul class="testimonials" id="testimonials">
                 <li>
                   <div class="tm-img full-width"><span><img style="max-width: 100%;" alt="" src="<?php echo $this->getSkinUrl('images/tm-img.jpg');?>" /></span></div>
                   <div class="tm-detail full-width">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur</div>
                   <div class="tm-name full-width">-Nick</div>
                 </li>
+				<li>
+                  <div class="tm-img full-width"><span><img style="max-width: 100%;" alt="" src="<?php echo $this->getSkinUrl('images/tm-img.jpg');?>" /></span></div>
+                  <div class="tm-detail full-width">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur</div>
+                  <div class="tm-name full-width">-Nick</div>
+                </li>
+				<li>
+                  <div class="tm-img full-width"><span><img style="max-width: 100%;" alt="" src="<?php echo $this->getSkinUrl('images/tm-img.jpg');?>" /></span></div>
+                  <div class="tm-detail full-width">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur</div>
+                  <div class="tm-name full-width">-Nick</div>
+                </li>
+				<li>
+                  <div class="tm-img full-width"><span><img style="max-width: 100%;" alt="" src="<?php echo $this->getSkinUrl('images/tm-img.jpg');?>" /></span></div>
+                  <div class="tm-detail full-width">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur</div>
+                  <div class="tm-name full-width">-Nick</div>
+                </li>
+				<li>
+                  <div class="tm-img full-width"><span><img style="max-width: 100%;" alt="" src="<?php echo $this->getSkinUrl('images/tm-img.jpg');?>" /></span></div>
+                  <div class="tm-detail full-width">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur</div>
+                  <div class="tm-name full-width">-Nick</div>
+                </li>
+				
               </ul>
+			  <script type="text/javascript">
+				jQuery(document).ready(function(){
+					jQuery('#testimonials').slick({
+						arrows			: 	false,
+						dots			: 	true,
+						slidesToShow	: 	1,
+						slidesToScroll	: 	1,
+						autoplay: true,
+						autoplaySpeed: 5000
+					});
+				});
+				</script>
             </div>
           </div>
         </div>

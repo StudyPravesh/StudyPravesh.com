@@ -10628,17 +10628,7 @@ div.calendar table td.button {
 .quick-apply label{width:30%; display:block; float:left}
 .quick-apply input[type="text"], .quick-apply input[type="email"], .quick-apply select, .quick-apply textarea{width:70%; float:right}
 
-
-
-
-
-
 .border-box-1px{border:1px solid #273b4f;}
-
-
-
-
-
 
 
 .navigation ul li{display:inline-block;}
@@ -10647,7 +10637,7 @@ div.calendar table td.button {
 .navigation ul li a:first-child{padding-left:0px;}
 
 .home{}
-.home .home-filter{width:100%; float:left; padding:20px; background:#273c4f; margin-bottom:30px;}
+.home .home-filter{width:100%; float:left; padding:20px; background:#273c4f; margin-bottom:30px; margin-top: -60px;}
 .home .home-filter select{border:1px solid #d4d7d9; border-radius:2px; width:130px; margin-right:2px; float:left; height:35px;}
 .home .home-filter input[type="submit"]{width:130px; float:right; height:35px; border:1px solid #d4950a; border-radius:2px; background:#ffae00; text-align:center; color:#ffffff; text-shadow:1px 1px #f6a700;}
 
@@ -10656,7 +10646,8 @@ div.calendar table td.button {
 .home .main-content .right-content{width:29%; float:right;}
 
 .home .main-content .left-content .heading, .home .main-content .right-content .heading{font-size:18px; border-bottom:1px solid #273b4f; padding:10px 0px; color:#273b4f; margin-bottom:10px;}
-.home .main-content .left-content .product-boxes li{width:32%; float:left; margin-right:2%; margin-bottom:2%; box-sizing:border-box; border:1px solid #cccccc; background:#eaeaea}
+.home .main-content .left-content .product-boxes li{float:left; padding:0px 5px}
+.home .main-content .left-content .product-boxes li .li-holder{width:100%; float:left; box-sizing:border-box; border:1px solid #cccccc; background:#eaeaea}
 .home .main-content .left-content .product-boxes li:nth-child(3n){margin-right:0px;}
 .home .main-content .left-content .product-boxes li .image-box{background:#ffffff;}
 .home .main-content .left-content .product-boxes li .image-box img{max-width:100%}
