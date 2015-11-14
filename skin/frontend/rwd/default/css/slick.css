@@ -183,9 +183,8 @@
     font-family: 'slick';
     font-size: 20px;
     line-height: 1;
-
     opacity: .75;
-    color: white;
+    color: #555555;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
