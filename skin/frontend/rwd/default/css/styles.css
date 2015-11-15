@@ -3996,6 +3996,13 @@ a.skip-link {
    * Social icons
    */
 }
+.footer .links a.social{background:#3ea1da url(../images/s-icons.png) no-repeat; display:block; width:49px; height:49px; font-size:0px; border-radius:25px;}
+.footer .links a.facebook{background-position:12px 12px}
+.footer .links a.twitter{background-position:14px -35px}
+.footer .links a.pinterest{background-position:12px -137px}
+.footer .links a.rss{background-position:14px -188px}
+
+
 @media only screen and (max-width: 479px) {
   .footer {
     padding-top: 15px;
