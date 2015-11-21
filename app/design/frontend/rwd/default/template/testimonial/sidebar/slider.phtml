@@ -1,0 +1,35 @@
+<?php if(Mage::getStoreConfig('testimonial/general_option/enable_sidebar') == 1):
+	$latestTestimonial = $this->getTestimonialsLast(); 
+	//echo '<pre>';print_r($latestTestimonial->getdata());die;
+	if(count($latestTestimonial) > 0):?>
+        <div class="heading full-width">Testimonials</div>
+        <div class="content-box">
+            <div class="full-width border-box-1px p10">
+                <ul class="testimonials" id="testimonialSidebar">			
+                <?php foreach($latestTestimonial as $_item):?>							
+                <li>
+                    <?php /*?><div class="tm-img full-width"><span><a href="<?php echo $this->getUrl('testimonial')?>#<?php echo $_item->getName(); ?>" title=""><img style="max-width: 100%;" alt="" src="<?php echo Mage::getBaseUrl('media').'magebuzz/avatar/'.$_item->getavatar_name();?>" /></a></span></div><?php */?>
+                    <div class="tm-img full-width"><span><img style="max-width: 100%;" alt="" src="<?php echo Mage::getBaseUrl('media').'magebuzz/avatar/'.$_item->getavatar_name();?>" /></span></div>
+                    <div class="tm-detail full-width"><?php echo $testimonialContent 	= $this->getContentTestimonialSidebar($_item->getTestimonial(), 300);?></div>
+                    <div class="tm-name full-width">-<?php echo $_item->getName(); ?></div>
+                    <?php //echo date('F d, Y', Mage::getModel('core/date')->gmtTimestamp($_item->getCreatedTime())); ?>
+                </li>
+                <?php endforeach;?>		
+            </ul>
+            </div>
+        </div>
+    
+		<script type="text/javascript">
+            jQuery(document).ready(function(){
+                jQuery('#testimonialSidebar').slick({
+                    arrows			: 	false,
+                    dots			: 	true,
+                    slidesToShow	: 	1,
+                    slidesToScroll	: 	1,
+                    autoplay: true,
+                    autoplaySpeed	: 	5000
+                });
+            });
+        </script>
+    <?php endif ?>	
+<?php endif ?>

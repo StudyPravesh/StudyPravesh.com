@@ -176,53 +176,11 @@
         	<?php echo $this->getLayout()->createBlock('catalog/product_mostviewed')->setTemplate('catalog/product/mostviewed.phtml')->toHtml();?>
             <?php echo $this->getLayout()->createBlock('reports/product_viewed')->setTemplate('reports/product_viewed.phtml')->toHtml(); ?>
         </div>
+        
         <div class="right-content">
-          <div class="heading full-width">Testimonials</div>
-          <div class="content-box">
-            <div class="full-width border-box-1px p10">
-              <ul class="testimonials" id="testimonials">
-                <li>
-                  <div class="tm-img full-width"><span><img style="max-width: 100%;" alt="" src="<?php echo $this->getSkinUrl('images/tm-img.jpg');?>" /></span></div>
-                  <div class="tm-detail full-width">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur</div>
-                  <div class="tm-name full-width">-Nick</div>
-                </li>
-				<li>
-                  <div class="tm-img full-width"><span><img style="max-width: 100%;" alt="" src="<?php echo $this->getSkinUrl('images/tm-img.jpg');?>" /></span></div>
-                  <div class="tm-detail full-width">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur</div>
-                  <div class="tm-name full-width">-Nick</div>
-                </li>
-				<li>
-                  <div class="tm-img full-width"><span><img style="max-width: 100%;" alt="" src="<?php echo $this->getSkinUrl('images/tm-img.jpg');?>" /></span></div>
-                  <div class="tm-detail full-width">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur</div>
-                  <div class="tm-name full-width">-Nick</div>
-                </li>
-				<li>
-                  <div class="tm-img full-width"><span><img style="max-width: 100%;" alt="" src="<?php echo $this->getSkinUrl('images/tm-img.jpg');?>" /></span></div>
-                  <div class="tm-detail full-width">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur</div>
-                  <div class="tm-name full-width">-Nick</div>
-                </li>
-				<li>
-                  <div class="tm-img full-width"><span><img style="max-width: 100%;" alt="" src="<?php echo $this->getSkinUrl('images/tm-img.jpg');?>" /></span></div>
-                  <div class="tm-detail full-width">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur</div>
-                  <div class="tm-name full-width">-Nick</div>
-                </li>
-				
-              </ul>
-			  <script type="text/javascript">
-				jQuery(document).ready(function(){
-					jQuery('#testimonials').slick({
-						arrows			: 	false,
-						dots			: 	true,
-						slidesToShow	: 	1,
-						slidesToScroll	: 	1,
-						autoplay: true,
-						autoplaySpeed: 5000
-					});
-				});
-				</script>
-            </div>
-          </div>
+          <?php echo $this->getLayout()->createBlock('testimonial/sidebar')->setTemplate('testimonial/sidebar/slider.phtml')->toHtml();?>
         </div>
+        
       </div>
     </div>
   </div>
