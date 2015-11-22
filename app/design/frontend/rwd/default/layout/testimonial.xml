@@ -11,9 +11,9 @@
 				<position>0</position>
 			</action>
 		</reference>
-        <reference name="left">
+        <!--<reference name="left">
             <block type="testimonial/sidebar" name="testimonial.sidebar" before="-"/>
-        </reference>
+        </reference>-->
   </default>
   <testimonial_index_index>
 		<reference name="root">
