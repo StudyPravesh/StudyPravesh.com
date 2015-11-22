@@ -23,7 +23,7 @@ $skinURL			=		$this->getSkinUrl('images/');
 <div class="header-language-background">
     <div class="header-language-container">
         <div class="pull-left">
-			<span class="pull-left mR10">Tel: +91 9983274000</span> <span class="pull-left mL10">Mail us : <a href="mailto:support@studypravesh.com">support@studypravesh.com</a></span>
+			<span class="pull-left mR10">Tel: +91 9983274000</span> <span class="pull-left mL10">Mail us : <a href="mailto:info@studypravesh.com">info@studypravesh.com</a></span>
 		</div>
 		<div class="pull-right">
 			<a href="<?php echo $baseURL;?>customer/account/login/">Login</a> | <a href="<?php echo $baseURL;?>customer/account/create/">Signup</a>
@@ -109,12 +109,8 @@ $skinURL			=		$this->getSkinUrl('images/');
 <?php if($this->getIsHomePage()) { ?>
 <div class="hero-slider full-width">
 	<div id="hero-slider" style="max-width:1500px; margin:0 auto;">
-		<div>
-			<img src="http://localhost/fresh/magento/skin/frontend/rwd/default/images/homepage/hero-banner-1.jpg" alt="" />
-		</div>
-		<div>
-			<img src="http://localhost/fresh/magento/skin/frontend/rwd/default/images/homepage/hero-banner-2.jpg" alt="" />
-		</div>
+		<div><img src="<?php echo $this->getSkinUrl('images/homepage/hero-banner-1.jpg') ?>" alt="" /></div>
+		<div><img src="<?php echo $this->getSkinUrl('images/homepage/hero-banner-2.jpg') ?>" alt="" /></div>
 	</div>
 	<script type="text/javascript">
 	jQuery(document).ready(function(){
@@ -123,8 +119,8 @@ $skinURL			=		$this->getSkinUrl('images/');
 			dots			: 	false,
 			slidesToShow	: 	1,
 			slidesToScroll	: 	1,
-			autoplay: true,
-			autoplaySpeed: 5000
+			autoplay		: 	true,
+			autoplaySpeed	: 	5000
 		});
 	});
 	</script>
