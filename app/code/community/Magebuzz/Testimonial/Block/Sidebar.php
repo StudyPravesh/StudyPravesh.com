@@ -33,11 +33,17 @@ class Magebuzz_Testimonial_Block_Sidebar extends Mage_Core_Block_Template {
 	}
 		
 	public function getContentTestimonialSidebar($_description, $count) {
-		$short_desc = substr($_description, 0, $count);
-		 if(substr($short_desc, 0, strrpos($short_desc, ' '))!='') {
+		if ( strlen($_description) <= $count ) return $_description;
+		$newstr = substr($_description, 0, $count);
+		if ( substr($newstr,-1,1) != ' ' ) $newstr = substr($newstr, 0, strrpos($newstr, " ")).'...'; 
+		return $newstr;
+		
+		/*$short_desc = substr($_description, 0, $count);
+		echo strrpos($short_desc, ' ');die;
+		if(substr($short_desc, 0, strrpos($short_desc, ' '))!='') {
 			$short_desc = substr($short_desc, 0, strrpos($short_desc, ' '));
 			$short_desc = $short_desc.'...';
 		}
-		return $short_desc;
+		return $short_desc;*/
 	}
 }
