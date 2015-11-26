@@ -79,5 +79,13 @@ class CodeMasterz_Sarah_Helper_Data extends Mage_Core_Helper_Abstract{
 			return $collection;
 		}
 	}
+	
+	/*
+		@returns date in proper format
+	*/
+	public function formatDate($date){
+		//return date('l\, F j, Y', strtotime($date));
+		return date('F j, Y', strtotime($date));
+	}
 }
 	 

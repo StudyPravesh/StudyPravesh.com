@@ -180,24 +180,7 @@ function OnSubmitForm(){
           <div class="heading full-width">News &amp; Announcements</div>
           <div class="content-box">
             <div class="full-width border-box-1px p10">
-              <ul class="news">
-                <li>
-                  <div class="date full-width mB10"><span>Oct 09, 2015</span></div>
-                  <div class="text full-width mB10">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                </li>
-                <li>
-                  <div class="date full-width mB10"><span>Oct 09, 2015</span></div>
-                  <div class="text full-width mB10">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                </li>
-                <li>
-                  <div class="date full-width mB10"><span>Oct 09, 2015</span></div>
-                  <div class="text full-width mB10">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                </li>
-                <li>
-                  <div class="date full-width mB10"><span>Oct 09, 2015</span></div>
-                  <div class="text full-width mB10">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temlor in kreprehenderit in voluptate velit esse cillium dolore eu fugiat nulla pariatur, Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                </li>
-              </ul>
+              <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('aw_blog/latest.phtml')->toHtml(); ?>
             </div>
           </div>
         </div>

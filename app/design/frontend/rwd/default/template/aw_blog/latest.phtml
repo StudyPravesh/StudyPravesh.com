@@ -1,0 +1,20 @@
+<?php	$posts	= 	Mage::getModel('blog/blog')
+						->getCollection()
+						->addPresentFilter()
+						->addStoreFilter(Mage::app()->getStore()->getId())
+						->addFieldToFilter('status', 1)
+						->setOrder('created_time ', 'desc')
+						->setPageSize(3);
+						//->load(1);die;
+if(count($posts)){?>
+    <ul class="news">
+    <?php foreach ($posts as $post){?>
+        <li>
+            <?php /*?><div class="date full-width mB10"><span><?php echo Mage::helper('sarah')->formatDate($post->getCreatedTime()); ?></span></div><?php */?>
+            <div class="post-title"><a href="<?php echo $post->getAddress(); ?>"><?php echo $post->getTitle(); ?></a> (<span><?php echo Mage::helper('sarah')->formatDate($post->getCreatedTime()); ?></span>)</div>
+            <div class="text full-width mB10"><?php echo $post->getShortContent();?></div>
+		</li>
+    <?php } ?>
+    </ul>    
+    <div id="messages_product_view"></div>
+<?php } ?>
