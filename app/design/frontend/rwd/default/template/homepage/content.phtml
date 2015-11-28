@@ -1,74 +1,22 @@
 <script type="text/javascript">
-// State lists
-var cities = new Array();
-cities['Gujarat'] 		= new Array('Ahmedabad','Anand','Ankleshwar','Bharuch','Bhavnagar','Bhuj','Gandhinagar','Gir','Jamnagar','Kandla','Porbandar','Rajkot','Surat','Vadodara/Baroda','Valsad','Vapi','Gujarat-Other');
-
-cities['Rajasthan'] 	= new Array('Ajmer','Jaipur','Jaisalmer','Jodhpur','Kota','Chittod','Udaipur','Rajasthan-Other');
-
-cities['Haryana'] 	= new Array('Ambala','Chandigarh','Faridabad','Gurgaon','Hisar','Karnal','Kurukshetra','Panipat','Rohtak','Haryana-Other');
-
-cities['Himachal Pradesh'] 	= new Array('Dalhousie','Dharmasala','Kulu/Manali','Shimla','Himachal Pradesh-Other');
-
-cities['Jammu Kashmir'] 	= new Array('Jammu','Srinagar','Jammu and Kashmir-Other');
-
-//cities['Haryana'] 	= new Array('');
-
-cities['Maharashtra'] 	= new Array('Ahmednagar','Aurangabad','Jalgaon','Kolhapur','Mumbai','Mumbai Suburbs','Nagpur','Nasik','Navi Mumbai','Pune','Solapur','Maharashtra-Other');
-
-// City lists
-function setcities() {
-	stateSel = document.getElementById('state');
-	cityList = cities[stateSel.value];
-	changeSelect('city', cityList, cityList);
-}
-
-function changeSelect(fieldID, newOptions, newValues) {
-	selectField = document.getElementById(fieldID);
-	selectField.options.length = 0;
-	for (i=0; i<newOptions.length; i++) {
-		selectField.options[selectField.length] = new Option(newOptions[i], newValues[i]);
-	}
-}
-
-function addLoadEvent(func) {
-	var oldonload = window.onload;
-	if (typeof window.onload != 'function') {
-		window.onload = func;
-	}else {
-		window.onload = function() {
-			if (oldonload) {
-				oldonload();
-			}
-			func();
-		}
-	}
-}
-
-addLoadEvent(function() {
-	setcities();
-});
-
 //	Creating dynamic form action url
 function OnSubmitForm(){
-	
 	var category	=	jQuery('#category').val();
 	var course		=	jQuery('#course').val();
 	var state		=	jQuery('#state').val();
 	var city		=	jQuery('#city').val();
 	var url			= 	category + '?course=' + course +'&state=' + state +'&city=' + city;
 	//alert(url);
-	jQuery("#filter_now").attr("action"); //Will retrieve it
-	jQuery("#filter_now").attr("action", '<?php echo Mage::getUrl()?>' + url); //Will set it
+	jQuery("#filter_now").attr("action");
+	jQuery("#filter_now").attr("action", '<?php echo Mage::getUrl()?>' + url);
 	return true;
 }
-
 </script>
 
 <div class="home">
   <div class="full-width">
     <div class="row p0">
       <div class="home-filter">
-        <?php /*?><form action="colleges.html?cat=3&course=10&state=6&city=7" method="post"><?php */?>
         <form name="filter_now" id="filter_now" method="post" onsubmit="return OnSubmitForm();">
             <select name="cat" id="category">
                 <option>Browse by</option>
@@ -107,28 +55,82 @@ function OnSubmitForm(){
             </select><?php */?>
             
 			<?php	//	Showing states
-			$stateCollection = Mage::getModel('directory/country')->load('IN')->getRegions()->toOptionArray();
+			$attribute 	= 	Mage::getModel('eav/config')->getAttribute('catalog_product', 'state');
+			$stateCollection = 	$attribute->getSource()->getAllOptions(true, true);
 			//echo '<pre>';print_r($stateCollection);die;
 			if (count($stateCollection) > 0){ ?>
-                <select name="state" id="state" class="required-entry validate-select" onChange="setcities();">
+                <select name="state" id="state" class="required-entry validate-select">
                 	<option>Select State</option>
-                    <?php foreach($stateCollection as $state): ?>
-                        <option value="<?php echo $state['label']//$state['value'] ?>"><?php echo $state['label'] ?></option>
-                    <?php endforeach; ?>
+                    <?php 
+						foreach($stateCollection as $state){
+							if($state['label']){ ?>
+                        		<option value="<?php echo $state['value'];?>"><?php echo $state['label'] ?></option>
+                    	<?php }
+						} 
+					?>
                 </select>
             <?php }else{ ?>
                 <input name="state" id="state" title="" value="" class="input-text required-entry"  placeholder="State"/>
             <?php } ?>
             
-                        
-            <select name="city" id="city" onChange="setcities();">
+            <select name="city" id="city">
               <option value="">Please select a City </option>
             </select>
             
-          <?php /*?><select name="fee-range">
-            <option>Fee Range</option>
-            <option>Option 1</option>
-          </select><?php */?>
+            <script type="text/javascript">
+			Event.observe($('state'), 'change', function(event) {
+				var action 	= 	"<?php echo $this->getUrl('querymanager/index/getCities'); ?>";
+				var stateId = 	$('state').value;
+				var request = 	new Ajax.Request(action,
+					{
+						method: 'GET',
+						parameters: {state_id: stateId},
+						onComplete: function(data) {
+							//alert(data.responseText);
+							$('city').replace('<select id="city" name="city" class="required-entry">' + '<option value="">Please Select City</option>' + data.responseText + '</select>');
+						},
+						onSuccess: function (data) {
+							//alert(data.response);
+							/*data = $.parseJSON(data);
+							alert('test');
+							console.log(data[0].response);exit
+							
+							
+							$.each(data, function(i, user) {
+								$('#city').append(
+									$('<option></option>').html(user.user)
+								);
+							});
+
+							var items = '';
+							$.each(data,function(value, name) {
+								alert(value);
+							   items += "<option value='"+value+"'>"+name+"</option>";
+							});
+							alert(items);
+							console.log(items);
+							$("#city").replace('<select id="city" name="city" class="required-entry">' + '<option value="">Please Select City 2</option>' + items + '</select>'); 
+							*/
+							
+							/*data = $.parseJSON(data);
+							console.log(data[0].response);
+							var result	=	JSON.parse(data);*/
+							
+							
+
+							//alert(data.responseText);
+							//var data = jQuery.parseJSON(data);
+							//data = JSON.parse( data );
+							//alert(data.responseText);
+							//alert(JSON.parse(data.responseText));
+							//$('city').replace('<select id="city" name="city" class="required-entry">' + '<option value="">Please Select City</option>' + JSON.parse(data.responseText) + '</select>');
+							//$('city').replace('<select id="city" name="city" class="required-entry">' + '<option value="">Please Select City</option>' + data[0].response + '</select>');
+						},
+						onFailure: ''
+					}
+				);
+			});
+			</script>
           <input type="submit" value="Filter Now" name="filter" />
         </form>
       </div>

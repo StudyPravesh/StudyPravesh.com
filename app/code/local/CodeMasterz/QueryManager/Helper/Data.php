@@ -27,39 +27,28 @@ class CodeMasterz_QueryManager_Helper_Data extends Mage_Core_Helper_Abstract{
     }
 	
 	
-	public function getCities($stateId)
-    {
-        $resource = Mage::getSingleton('core/resource');
-        $readConnection = $resource->getConnection('core_read');
-        $tableName = $resource->getTableName('cities');
-        $query = "SELECT * FROM `".$tableName."` WHERE state_id = ".$stateId;
+	
+
+    public function getCitiesAsDropdown($stateId){
+		$resource 	= 	Mage::getSingleton('core/resource');
+		$readConnection = $resource->getConnection('core_read');
+		$table1 	= 	$resource->getTableName('eav/attribute_option');
+		$table2 	= 	$resource->getTableName('eav/attribute_option_value');
+		
+		$query 		= 	"SELECT et2.option_id, et2.value
+							FROM $table1 AS et1
+							LEFT JOIN $table2 AS et2 ON et1.option_id = et2.option_id 
+							WHERE et1.linked_attribute_id='$stateId' ORDER BY et2.value ASC";
 		//echo $query;
-        $results = $readConnection->fetchAll($query);
-        $cities = array();
-
-        if(count($results) > 0)
-        {
-            foreach($results as $city)
-            {
-                $cityId = $city['id'];
-                $cityName = $city['city_name'];
-                $cities[$cityId] = $cityName;
-            }
-        }
-        return $cities;
-    }
-
-    public function getCitiesAsDropdown($selectedCity = '',$stateId)
-    {
-        $cities = $this->getCities($stateId);
-		//echo '<pre>';print_r($cities);
-        $options = '';
-        if(count($cities) > 0)
-        {
-            foreach($cities as $key	=>	$city)
-            {
-                $isSelected = $selectedCity == $city ? ' selected="selected"' : null;
-                $options .= '<option value="' . $city . '"' . $isSelected . '>' . $city . '</option>';
+        $results 	= 	$readConnection->fetchAll($query);
+		//echo '<pre>';print_r($results);
+		$options = '';
+        if(count($results) > 0){
+			$i=0;
+            foreach($results as $city){
+				//echo '<pre>';print_r($city);
+				$options .= '<option value='.$city['option_id']. '>' . $city['value'] .'</option>';
+				$i++;
             }
         }
         return $options;

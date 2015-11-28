@@ -44,22 +44,22 @@ class CodeMasterz_QueryManager_IndexController extends Mage_Core_Controller_Fron
 	}
 	
 	
-	public function getCitiesAction($selectedCity = '',$stateId){
+	public function getCitiesAction(){
 		$params 	= 	$this->getRequest()->getParams();
 		$stateId	=	$params['state_id'];
-		$selectedCity	=	$params['default_city'];
-        $result		=	array();
-        $result['mycities']=Mage::helper('querymanager')->getCitiesAsDropdown($selectedCity,$stateId);
-		//echo '<pre>';print_r($result);
-        $this->getResponse()->setHeader('Content-type','application/json', true);
-		$this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
+        //$result		=	array();
+        $result	=	Mage::helper('querymanager')->getCitiesAsDropdown($stateId);
+		echo $result;
+		//return $result;
+		//echo '<pre>';print_r($result);die;
+		
+        //$this->getResponse()->setHeader('Content-type','application/json', true);
+		//$this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
 		//$this->getResponse()->setBody($result);
 		
 		/*$responseData['message'] = $this->__('Coupon code is not valid.');
 		$this->getResponse()->setHeader('Content-type','application/json', true);
 		$this->getResponse()->setBody(Mage::helper('core')->jsonEncode($responseData));*/
-		//return;
-		
-		
+		//return;		
     }
 }
