@@ -29,25 +29,7 @@
                 <label>City <span class="star">*</span></label>
                 <select class="required-entry" name="city" id="city">
                     <option value="">Select City</option>
-                    <option value="185736">Ajmer</option>
-                    <option value="185737">Alwar</option>
-                    <option value="185738">Bharatpur</option>
-                    <option value="185739">Bhilwara</option>
-                    <option value="185740">Bhiwadi</option>
-                    <option value="185741">Bikaner</option>
-                    <option value="185742">Deogarh (Rajasthan)</option>
-                    <option value="185743">Jaipur</option>
-                    <option value="185744">Jhunjhunu / Churu</option>
-                    <option value="185745">Jodhpur</option>
-                    <option value="185746">Kota</option>
-                    <option value="185747">Pilani</option>
-                    <option value="185748">Pratapgarh</option>
-                    <option value="185749">Rajasthan - Other</option>
-                    <option value="185750">Rajpura - Rajasthan</option>
-                    <option value="185751">Sikar</option>
-                    <option value="185752">Tonk</option>
-                    <option value="185753">Udaipur</option>
-                  </select>
+                </select>
             </div>
             <div class="input-box full-width">
                 <label>Mobile </label>
@@ -69,9 +51,27 @@
     </div>
 </div>
 <script type="text/javascript">
-
+	//	Calling states cities
+	Event.observe($('state'), 'change', function(event) {
+		var action = "<?php echo $this->getUrl('directorycity/index/getCities'); ?>";
+		var stateId = $('state').value;
+		var request = new Ajax.Request(action,
+			{
+				method: 'GET',
+				parameters: {state_id: stateId},
+				onComplete: function(data) {
+					//alert(data.responseText);
+					$('city').replace('<select id="city" name="city" class="required-entry">' + '<option value="">Please Select City</option>' + data.responseText + '</select>');
+				},
+				onSuccess: function (data) {
+				},
+				onFailure: ''
+			}
+		);
+	});
+	
+	
 	var customForm = new VarienForm('queryFrm');
-
 	jQuery('#queryFrm').on('submit', function(e) {
 		e.preventDefault();
 		if(customForm.validator.validate()) {

@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Angara_DirectoryCity>
+      <version>0.1.0</version>
+    </Angara_DirectoryCity>
+  </modules>
+  <global>
+    <helpers>
+      <directorycity>
+        <class>Angara_DirectoryCity_Helper</class>
+      </directorycity>
+    </helpers>
+	<blocks>
+	  <directorycity>
+		<class>Angara_DirectoryCity_Block</class>
+	  </directorycity>
+	</blocks>
+	<models>
+	  <directorycity>
+		<class>Angara_DirectoryCity_Model</class>
+		<resourceModel>directorycity_mysql4</resourceModel>
+	  </directorycity>
+	  <directorycity_mysql4>
+		<class>Angara_DirectoryCity_Model_Mysql4</class>
+		<entities>		  
+			  <directorycity>
+				<table>directory_city</table>
+			  </directorycity>
+        </entities>
+	  </directorycity_mysql4>
+	</models>
+	<resources>
+	  <directorycity_setup>
+		<setup>
+		  <module>Angara_DirectoryCity</module>
+		</setup>
+		<connection>
+		  <use>core_setup</use>
+		</connection>
+	  </directorycity_setup>
+	  <directorycity_write>
+		<connection>
+		  <use>core_write</use>
+		</connection>
+	  </directorycity_write>
+	  <directorycity_read>
+		<connection>
+		  <use>core_read</use>
+		</connection>
+	  </directorycity_read>
+	</resources>
+  </global>
+  <admin>
+	<routers>
+	  <directorycity>
+	    <use>admin</use>
+		<args>
+		  <module>Angara_DirectoryCity</module>
+		  <frontName>admin_directorycity</frontName>
+		</args>
+	  </directorycity>
+	</routers>
+  </admin>
+  <adminhtml>
+  	
+	<menu>
+        <cms>
+            <children>
+                <directorycity module="directorycity">
+                    <title>States Cities</title>
+                    <sort_order>101</sort_order>
+                    <action>admin_directorycity/adminhtml_directorycity</action>
+                </directorycity>
+            </children>
+        </cms>
+    </menu>
+	
+	<!--<menu>
+	  <directorycity module="directorycity">
+		<title>DirectoryCity</title>
+		<sort_order>100</sort_order>
+		<children>
+		  <directorycity module="directorycity">
+		    <title>Manage Directorycity</title>
+			<sort_order>0</sort_order>
+			<action>admin_directorycity/adminhtml_directorycity</action>
+		  </directorycity>
+		</children>
+	  </directorycity>
+	</menu>-->
+	
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			
+			<admin>
+                <children>
+                    <directorycity>
+                        <title>States Cities</title>
+                        <sort_order>601</sort_order>
+                    </directorycity>
+                </children>
+            </admin>
+			
+			<!--<admin>
+				<children>
+					<directorycity translate="title" module="directorycity">
+						<title>DirectoryCity</title>
+						<sort_order>1000</sort_order>
+						<children>
+							<directorycity translate="title">
+								<title>Manage Directorycity</title>
+								<sort_order>0</sort_order>
+							</directorycity>
+						</children>
+					</directorycity>
+				</children>
+			</admin>-->
+		</resources>
+	</acl>
+	
+	<layout>
+	  <updates>
+		<directorycity>
+		  <file>directorycity.xml</file>
+		</directorycity>
+	  </updates>
+	</layout>
+  </adminhtml>
+</config> 
