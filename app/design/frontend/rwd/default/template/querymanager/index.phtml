@@ -5,12 +5,12 @@
         <div class="full-width pL10 pR10">
             <div class="input-box full-width">
                 <label>Your Name <span class="star">*</span></label>
-                <input class="input-text required-entry" type="text" required="" value="" placeholder="Your Name" id="name" name="name">
+                <input class="input-text required-entry" type="text" value="" placeholder="Your Name" id="name" name="name">
             </div>
             
             <div class="input-box full-width">
                 <label>Email Id <span class="star">*</span></label>
-                <input class="required-entry validate-email" type="email" required="" value="" placeholder="Email" id="email" name="email">
+                <input class="required-entry validate-email" type="email" value="" placeholder="Email" id="email" name="email">
             </div>
             
             <div class="input-box full-width">
@@ -18,7 +18,8 @@
                 <?php	$stateCollection = Mage::getModel('directory/country')->load('IN')->getRegions()->toOptionArray();
 					//echo '<pre>';print_r($stateCollection);die;
 					if (count($stateCollection) > 0){ ?>
-				  <select class="required-entry" name="state" id="state" requried="">
+				  <select class="validate-select" name="state" id="state" requried="">
+                  	<option value="">Please Select State</option>
 					<?php foreach($stateCollection as $state): ?>
 					<option value="<?php echo $state['value'] ?>"> <?php echo $state['label'] ?> </option>
 					<?php endforeach; ?>
@@ -27,8 +28,8 @@
             </div>
             <div class="input-box full-width">
                 <label>City <span class="star">*</span></label>
-                <select class="required-entry" name="city" id="city">
-                    <option value="">Select City</option>
+                <select class="validate-select" name="city" id="city">
+                    <option value="">Please Select City</option>
                 </select>
             </div>
             <div class="input-box full-width">
@@ -37,16 +38,18 @@
             </div>
             <div class="input-box full-width">
                 <label>Course <span class="star">*</span></label>
-                <input type="text" required="" id="courses" placeholder="Type Your Course Name Here" name="courses">
+                <input type="text" id="courses" placeholder="Type Your Course Name Here" name="courses">
             </div>
             <div class="input-box full-width">
                 <label>Message <span class="star">*</span></label>
-                <textarea class="required-entry" required="" id="message" name="message"></textarea>
+                <textarea class="required-entry" id="message" name="message"></textarea>
             </div>
-            </div>
-			<div class="full-width pL10 pR10 pB10">
+            
+            <div class="full-width pL10 pR10 pB10">
 				<input class="btn button pull-right" type="submit" name="submit" value="Enquire Now" />
 			</div>
+            
+		</div>
       </form>
     </div>
 </div>
@@ -61,7 +64,7 @@
 				parameters: {state_id: stateId},
 				onComplete: function(data) {
 					//alert(data.responseText);
-					$('city').replace('<select id="city" name="city" class="required-entry">' + '<option value="">Please Select City</option>' + data.responseText + '</select>');
+					$('city').replace('<select id="city" name="city" class="validate-select">' + '<option value="">Please Select City</option>' + data.responseText + '</select>');
 				},
 				onSuccess: function (data) {
 				},
@@ -71,8 +74,11 @@
 	});
 	
 	
-	var customForm = new VarienForm('queryFrm');
-	jQuery('#queryFrm').on('submit', function(e) {
+	//	Handle ajax form submit
+	//< ![CDATA[
+	var customForm = new VarienForm('queryFrm', true);
+	//]]>
+	<?php /*?>jQuery('#queryFrm').on('submit', function(e) {
 		e.preventDefault();
 		if(customForm.validator.validate()) {
 			var url =  '<?php echo Mage::getBaseUrl();?>querymanager/index/ajaxPost';
@@ -94,79 +100,5 @@
 			// to prevent refreshing the whole page page
 			return false;
 		}
-	});	
-	
-	<?php
-    $address         = Mage::getSingleton('checkout/session')->getQuote()->getBillingAddress();
-    $defaultCity     = 'Jaipur';		//$address->getCity();
-    ?>
-    Event.observe($('state'), 'change', function(event) {
-        var action = "<?php echo $this->getUrl('querymanager/index/getCities'); ?>";
-        var defaultCity = '<?php echo  $defaultCity ?>';
-        //var selectCountry = $('billing:country_id').value;
-        //if(selectCountry == "ES") {
-            var action = "<?php echo $this->getUrl('querymanager/index/getCities'); ?>";
-            var stateId = $('state').value;
-			//alert(stateId);
-            var request = new Ajax.Request(action,
-                {
-                    method: 'GET',
-                    onSuccess: function (data) {
-						//alert(data.responseText);
-						//var data = jQuery.parseJSON(data);
-                        $('city').replace('<select id="city" name="city" class="required-entry">' + '<option value=""></option>' + data.responseText + '</select>');
-                    },
-                    onFailure: '',
-                    parameters: {state_id: stateId, default_city: defaultCity}
-                }
-            );
-       // }
-
-    });
-   /* Event.observe($('state'), 'change', function(event) {
-        var selectCountry = $('state').value;
-        var defaultCity = '<?php echo  $defaultCity ?>';
-        //if(selectCountry != "ES"){
-            $('city').replace('<input type="text" class=" input-text required-entry absolute-advice " title="City" value="' + defaultCity + '" id="billing:city" name="billing[city]" autocomplete="off">');
-        //}
-    });*/
-	
-	
-	
-    <?php /*?><?php
-    $helper          = Mage::helper('querymanager');
-    //$defaultCity     = 'Jaipur';
-    $citiesOptions   = addslashes($helper->getUaeCitiesAsDropdown($defaultCity));
-    ?>
- 
-    var billingCity = '<?php echo $defaultCity ; ?>';
-    function billingSwitchCityField(){
-        var selectVal = jQuery('#state option:selected').val();
-        //if(selectVal == "513"){
-            jQuery("#city")
-            .replaceWith('<select id="city" name="city" class="required-entry">' +
-                  '<option value="">Please Select City</option>' +
-                  '<?php echo $citiesOptions; ?>' +
-                '</select>');
-        /*}else{
-            jQuery("#billing\\:city")
-            .replaceWith('<input type="text" class=" input-text required-entry absolute-advice " title="City" value="' + billingCity + '" id="billing:city" name="billing[city]" autocomplete="off">');
-        }
- 
-    }
-   jQuery(document).ready(function(){
-        billingSwitchCityField();
-        jQuery('#state').change(function() {
-            billingSwitchCityField();
-        });
-   })<?php */?>
+	});	<?php */?>
 </script>
-
-
-
-<?php /*?>http://magento.stackexchange.com/questions/42662/create-a-city-dropdown-problem-with-ajax
-CREATE TABLE `cities` (
-`id` int(11) NOT NULL AUTO_INCREMENT,
-`state_id` int(11) NOT NULL,
-`city_name` varchar(100) NOT NULL,
-PRIMARY KEY (`id`));<?php */?>
