@@ -10674,5 +10674,7 @@ div.calendar table td.button {
 .home .main-content .right-content .testimonials li .tm-detail{padding:20px; text-align:center}
 .home .main-content .right-content .testimonials li .tm-name{padding:20px 0px; text-align:center; font-size: 16px; color:#00356b}
 
+.stiky-header{display:none;}
+.bsticky{display:block!important; position: fixed; top: 0px; z-index: 1;}
 
 
