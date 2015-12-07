@@ -7,8 +7,8 @@ function OnSubmitForm(){
 	var city		=	jQuery('#city').val();
 	var url			= 	category + '?course=' + course +'&state=' + state +'&city=' + city;
 	//alert(url);
-	jQuery("#filter_now").attr("action");
-	jQuery("#filter_now").attr("action", '<?php echo Mage::getUrl()?>' + url);
+	jQuery("#filterFrm").attr("action");
+	jQuery("#filterFrm").attr("action", '<?php echo Mage::getUrl()?>' + url);
 	return true;
 }
 </script>
@@ -17,42 +17,56 @@ function OnSubmitForm(){
   <div class="full-width">
     <div class="row p0">
       <div class="home-filter">
-        <form name="filter_now" id="filter_now" method="post" onsubmit="return OnSubmitForm();">
-            <select name="cat" id="category">
+        <form name="filterFrm" id="filterFrm" method="post" onsubmit="return OnSubmitForm();">
+            
+            <select name="category" id="category" class="required-entry validate-select">
                 <option>Browse by</option>
-                <option value="schools.html">School</option>
-                <option value="coaching-institutes.html">Coaching</option>
-                <option value="colleges.html">College</option>
-                <option value="universities.html">University</option>
+                <option value="1">School</option>
+                <option value="2">Coaching</option>
+                <option value="3">College</option>
+                <option value="4">University</option>
             </select>
             
-            <select name="course" id="course">
-                <option>Select</option>
-                <option value="18">Play School</option>
-                <option value="19">Primary School</option>
-                <option value="20">Upper Primary School</option>
-
-                <option value="-">---</option>
-                
-                <option value="">Civil Services</option>
-                <option value="">Engg. Institutes</option>
-                <option value="">Medical Institutes</option>
-                <option value="">IIT JEE Main</option>
-                <option value="">Competition Classess</option>
-                <option value="">Academic Coaching Institutes</option>
-                <option value="">Law Institutes</option>
-                
-                <option value="-">---</option>
-                
-                <option value="science-engg">Science & Engineering</option>
-                <option value="medical-nursing">Medical/Nursing</option>
-                <option value="bed">B.Ed/STC</option>
-                <option value="bed">PG & Management</option>
-             </select>
-            <?php /*?><select name="Courses">
-                <option>Select Course</option>
-                <option>Option 1</option>
-            </select><?php */?>
+<script type="text/javascript">
+Event.observe($('category'), 'change', function(event) {
+	var action 		= 	"<?php echo $this->getUrl('querymanager/index/getCourses'); ?>";
+	var categoryId 	= 	$('category').value;	
+	var request 	= 	new Ajax.Request(action,
+		{
+			method: 'GET',
+			parameters: {category_id: categoryId},
+			onComplete: function(data) {
+				//alert(data.responseText);
+				$('course').replace('<select id="course" name="course" class="required-entry validate-select">' + '<option value="">Select Course</option>' + data.responseText + '</select>');
+			},
+			onSuccess: function (data) {
+				
+			},
+			onFailure: ''
+		}
+	);
+});
+</script>
+            
+            <?php	//	Showing courses
+			$attribute 			= 	Mage::getModel('eav/config')->getAttribute('catalog_product', 'course');
+			$courseCollection 	= 	$attribute->getSource()->getAllOptions(true, true);
+			//echo '<pre>';print_r($courseCollection);die;
+			if (count($courseCollection) > 0){ ?>
+                <select name="course" id="course" class="required-entry validate-select">
+                	<option>Select Course</option>
+                    <?php 
+						foreach($courseCollection as $course){
+							if($course['label']){ ?>
+                        		<option value="<?php echo $course['value'];?>"><?php echo $course['label'] ?></option>
+                    	<?php }
+						} 
+					?>
+                </select>
+            <?php }else{ ?>
+                <input name="course" id="course" title="" value="" class="input-text required-entry"  placeholder="Course"/>
+            <?php } ?>
+            
             
 			<?php	//	Showing states
 			$attribute 	= 	Mage::getModel('eav/config')->getAttribute('catalog_product', 'state');
@@ -87,44 +101,10 @@ function OnSubmitForm(){
 						parameters: {state_id: stateId},
 						onComplete: function(data) {
 							//alert(data.responseText);
-							$('city').replace('<select id="city" name="city" class="required-entry">' + '<option value="">Please Select City</option>' + data.responseText + '</select>');
+							$('city').replace('<select id="city" name="city" class="required-entry validate-select">' + '<option value="">Please Select City</option>' + data.responseText + '</select>');
 						},
 						onSuccess: function (data) {
-							//alert(data.response);
-							/*data = $.parseJSON(data);
-							alert('test');
-							console.log(data[0].response);exit
 							
-							
-							$.each(data, function(i, user) {
-								$('#city').append(
-									$('<option></option>').html(user.user)
-								);
-							});
-
-							var items = '';
-							$.each(data,function(value, name) {
-								alert(value);
-							   items += "<option value='"+value+"'>"+name+"</option>";
-							});
-							alert(items);
-							console.log(items);
-							$("#city").replace('<select id="city" name="city" class="required-entry">' + '<option value="">Please Select City 2</option>' + items + '</select>'); 
-							*/
-							
-							/*data = $.parseJSON(data);
-							console.log(data[0].response);
-							var result	=	JSON.parse(data);*/
-							
-							
-
-							//alert(data.responseText);
-							//var data = jQuery.parseJSON(data);
-							//data = JSON.parse( data );
-							//alert(data.responseText);
-							//alert(JSON.parse(data.responseText));
-							//$('city').replace('<select id="city" name="city" class="required-entry">' + '<option value="">Please Select City</option>' + JSON.parse(data.responseText) + '</select>');
-							//$('city').replace('<select id="city" name="city" class="required-entry">' + '<option value="">Please Select City</option>' + data[0].response + '</select>');
 						},
 						onFailure: ''
 					}
@@ -133,6 +113,12 @@ function OnSubmitForm(){
 			</script>
           <input type="submit" value="Filter Now" name="filter" />
         </form>
+        <script type="text/javascript">
+        //	Handle form submit
+        //< ![CDATA[
+        var customForm = new VarienForm('filterFrm', true);
+        //]]>
+        </script>
       </div>
     </div>
   </div>
@@ -146,10 +132,12 @@ function OnSubmitForm(){
 				<ul class="featured product-boxes" id="featured-box">
         <?php 
 		if(($_products = Mage::helper('sarah')->getProductsFromCategory('18')) && $_products->getSize()){ 	
-			foreach($_products->getItems() as $_product){?>
+			foreach($_products->getItems() as $_product){
+				//echo '<pre>';print_r($_product->getData());die;
+				?>
                 <li>
                     <div class="li-holder">
-                        <div class="image-box full-width"><a rel="nofollow" href="<?php echo $_product->getProductUrl(); ?>"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->resize(450); ?>" class="img-responsive" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" /></a></div>
+                        <div class="image-box full-width"><a rel="nofollow" href="<?php echo $_product->getProductUrl(); ?>"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(450); ?>" class="img-responsive" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" /></a></div>
                         <div class="detail-box full-width">
                             <div class="name"><?php echo $this->htmlEscape($_product->getName()) ?></div>
                             <div class="price-box"><?php echo $this->helper('core')->currency($_product->getPrice(),true,false) ?>
