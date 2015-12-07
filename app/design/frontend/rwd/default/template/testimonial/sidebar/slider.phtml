@@ -2,7 +2,7 @@
 	$latestTestimonial = $this->getTestimonialsLast(); 
 	//echo '<pre>';print_r($latestTestimonial->getdata());die;
 	if(count($latestTestimonial) > 0):?>
-        <div class="heading full-width">Testimonials</div>
+        <div class="heading full-width">Testimonials (<a href="<?php echo Mage::getUrl('testimonial');?>">View All</a>)</div>
         <div class="content-box">
             <div class="full-width border-box-1px p10">
                 <ul class="testimonials" id="testimonialSidebar">			
