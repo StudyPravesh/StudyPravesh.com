@@ -118,9 +118,14 @@ class CodeMasterz_QueryManager_Block_Adminhtml_Querymanager_Grid extends Mage_Ad
 		
 		static public function getOptionArray6()
 		{
-            $data_array=array(); 
-			$data_array[0]='State';
-            return($data_array);
+            $data_array			=	array(); 
+			$stateCollection 	= 	Mage::getModel('directory/country')->load('IN')->getRegions()->toOptionArray();
+			if (count($stateCollection) > 0){
+				foreach($stateCollection as $state){
+					$data_array[$state['value']]	=	$state['label'];
+				}
+			}
+			return($data_array);
 		}
 		
 		static public function getValueArray6()
@@ -136,9 +141,21 @@ class CodeMasterz_QueryManager_Block_Adminhtml_Querymanager_Grid extends Mage_Ad
 		static public function getOptionArray7()
 		{
             $data_array=array(); 
-			$data_array[0]='City';
+			$collection 	= 	Mage::getModel('directorycity/directorycity')
+									->getCollection()
+									->addFieldToSelect('*')
+									->addFieldToFilter('state_id', array('eq' => $stateId))
+									->setOrder('city_name',ASC)
+									->load();
+									//->load(1);die;
+			if( $collection->count() ){
+				foreach($collection as $city) {
+					$data_array[$city->getData('city_id')]	=	$city->getData('city_name');
+				}
+			}
             return($data_array);
 		}
+		
 		static public function getValueArray7()
 		{
             $data_array=array();

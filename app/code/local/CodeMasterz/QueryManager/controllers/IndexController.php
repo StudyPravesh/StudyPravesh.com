@@ -43,7 +43,13 @@ class CodeMasterz_QueryManager_IndexController extends Mage_Core_Controller_Fron
 		}
 	}
 	
-	
+	public function getCoursesAction(){
+		$params 	= 	$this->getRequest()->getParams();
+		$categoryId	=	$params['category_id'];
+        $result		=	Mage::helper('querymanager')->getCoursesAsDropdown($categoryId);
+		echo $result;
+	}
+		
 	public function getCitiesAction(){
 		$params 	= 	$this->getRequest()->getParams();
 		$stateId	=	$params['state_id'];
