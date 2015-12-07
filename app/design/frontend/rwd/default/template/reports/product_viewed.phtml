@@ -1,35 +1,26 @@
-<?php if ($_products = $this->getRecentlyViewedProducts()){ ?>
-<div class="full-width mB10">           
-    <div class="heading full-width"><?php echo $this->__('Recently Viewed Institutions') ?></div>
-    <div class="content-box full-width mB10">
-        <ul class="featured product-boxes" id="recently-viewed-items">
-        <?php foreach ($_products as $_item){ ?>
-        	<li class="item">
-				<div class="li-holder">
-					<div class="image-box full-width">
-						<a href="<?php echo $this->getProductUrl($_item) ?>"><img class="img-responsive" src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(300, 300)->setWatermarkSize('30x10'); ?>" alt="<?php echo $this->escapeHtml($this->getProductName()) ?>" /></a>
-					</div>
-					<div class="detail-box full-width">
-						<div class="name"><a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?></a>
-						</div>
-					</div>
-				</div>
+<?php if ($_products = $this->getRecentlyViewedProducts()): ?>
+<div class="block block-list block-viewed">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Recently Viewed Institutions') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <ol id="recently-viewed-items" class="mini-products-list">
+        <?php foreach ($_products as $_item): ?>
+            <li class="item">
+                <a href="<?php echo $this->getProductUrl($_item) ?>">
+                    <span class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50, 50)->setWatermarkSize('30x10'); ?>" width="50" height="50" alt="<?php echo $this->escapeHtml($this->getProductName()) ?>" /></span>
+                </a>
+                <div class="product-details">
+                    <p class="product-name">
+                        <a href="<?php echo $this->getProductUrl($_item) ?>">
+                            <?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?>
+                        </a>
+                    </p>
+                </div>
             </li>
-        <?php } ?>
-        </ul>
+        <?php endforeach; ?>
+        </ol>
         <script type="text/javascript">decorateList('recently-viewed-items');</script>
-		<script type="text/javascript">
-		jQuery(document).ready(function(){
-			jQuery('#recently-viewed-items').slick({
-				arrows			: 	true,
-				dots			: 	false,
-				slidesToShow	: 	3,
-				slidesToScroll	: 	1,
-				autoplay: true,
-				autoplaySpeed: 5000
-			});
-		});
-		</script>
     </div>
 </div>
-<?php } ?>
+<?php endif; ?>

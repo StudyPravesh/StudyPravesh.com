@@ -20,7 +20,7 @@ function OnSubmitForm(){
         <form name="filterFrm" id="filterFrm" method="post" onsubmit="return OnSubmitForm();">
             
             <select name="category" id="category" class="required-entry validate-select">
-                <option>Browse by</option>
+                <option value="">Browse by</option>
                 <option value="1">School</option>
                 <option value="2">Coaching</option>
                 <option value="3">College</option>
@@ -37,7 +37,7 @@ Event.observe($('category'), 'change', function(event) {
 			parameters: {category_id: categoryId},
 			onComplete: function(data) {
 				//alert(data.responseText);
-				$('course').replace('<select id="course" name="course" class="required-entry validate-select">' + '<option value="">Select Course</option>' + data.responseText + '</select>');
+				$('course').replace('<select id="course" name="course" class="required-entry validate-select">' + '<option value="">Select a Course</option>' + data.responseText + '</select>');
 			},
 			onSuccess: function (data) {
 				
@@ -54,7 +54,7 @@ Event.observe($('category'), 'change', function(event) {
 			//echo '<pre>';print_r($courseCollection);die;
 			if (count($courseCollection) > 0){ ?>
                 <select name="course" id="course" class="required-entry validate-select">
-                	<option>Select Course</option>
+                	<option value="">Select a Course</option>
                     <?php 
 						foreach($courseCollection as $course){
 							if($course['label']){ ?>
@@ -74,7 +74,7 @@ Event.observe($('category'), 'change', function(event) {
 			//echo '<pre>';print_r($stateCollection);die;
 			if (count($stateCollection) > 0){ ?>
                 <select name="state" id="state" class="required-entry validate-select">
-                	<option>Select State</option>
+                	<option value="">Select a State</option>
                     <?php 
 						foreach($stateCollection as $state){
 							if($state['label']){ ?>
@@ -87,8 +87,8 @@ Event.observe($('category'), 'change', function(event) {
                 <input name="state" id="state" title="" value="" class="input-text required-entry"  placeholder="State"/>
             <?php } ?>
             
-            <select name="city" id="city">
-              <option value="">Please select a City </option>
+            <select name="city" id="city" class="required-entry validate-select">
+              <option value="">Select a City </option>
             </select>
             
             <script type="text/javascript">
@@ -101,7 +101,7 @@ Event.observe($('category'), 'change', function(event) {
 						parameters: {state_id: stateId},
 						onComplete: function(data) {
 							//alert(data.responseText);
-							$('city').replace('<select id="city" name="city" class="required-entry validate-select">' + '<option value="">Please Select City</option>' + data.responseText + '</select>');
+							$('city').replace('<select id="city" name="city" class="required-entry validate-select">' + '<option value="">Select a City</option>' + data.responseText + '</select>');
 						},
 						onSuccess: function (data) {
 							
@@ -184,7 +184,7 @@ Event.observe($('category'), 'change', function(event) {
       <div class="row p0">
         <div class="left-content">
         	<?php echo $this->getLayout()->createBlock('catalog/product_mostviewed')->setTemplate('catalog/product/mostviewed.phtml')->toHtml();?>
-            <?php echo $this->getLayout()->createBlock('reports/product_viewed')->setTemplate('reports/product_viewed.phtml')->toHtml(); ?>
+            <?php echo $this->getLayout()->createBlock('reports/product_viewed')->setTemplate('reports/product_viewed_homepage.phtml')->toHtml(); ?>
         </div>
         
         <div class="right-content">

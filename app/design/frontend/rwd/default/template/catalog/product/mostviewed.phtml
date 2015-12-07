@@ -8,7 +8,7 @@
     	<li id="td_<?php echo $i;?>" <?php if($i%5==0 or $i==$_collectionSize){echo 'class="last"';} ?> >
 			<div class="li-holder">
 				<div id="cont_<?php echo $i;?>" class="image-box full-width">
-                	<a class="product-image" href="<?php echo $_product->getProductUrl() ?>"> <img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->resize(300, 300)->setWatermarkSize('30x10'); ?>" alt="<?php echo $this->escapeHtml($this->getProductName()) ?>" title="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'thumbnail')) ?>" /> </a>
+                	<a class="product-image" href="<?php echo $_product->getProductUrl() ?>"> <img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->resize(300, 200)->setWatermarkSize('30x10'); ?>" alt="<?php echo $this->escapeHtml($this->getProductName()) ?>" title="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'thumbnail')) ?>" /> </a>
                 </div>
 				<div class="detail-box full-width">
 					<div class="name"><h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a></h3></div>
