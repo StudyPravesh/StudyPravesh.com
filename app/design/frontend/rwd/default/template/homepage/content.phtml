@@ -1,3 +1,7 @@
+<?php
+$baseURL			=		Mage::getBaseUrl();
+$skinURL			=		$this->getSkinUrl('images/');
+?>
 <script type="text/javascript">
 //	Creating dynamic form action url
 function OnSubmitForm(){
@@ -144,7 +148,7 @@ Event.observe($('category'), 'change', function(event) {
       </div>
     </div>
     <div class="how-it-works full-width mB10 mT10">
-      <div class="row p0"><img style="max-width: 100%;" alt="" src="{{skin url='images/how-it-works.jpg'}}" /></div>
+      <div class="row p0"><img style="max-width: 100%;" alt="" src="<?php echo $skinURL.'how-it-works.jpg';?>" /></div>
     </div>
     
     <div class="full-width mT10">
