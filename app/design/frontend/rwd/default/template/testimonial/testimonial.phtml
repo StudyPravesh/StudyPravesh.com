@@ -2,19 +2,26 @@
 <div class="customer-testimonials">
 	<div class="page-title">
 		<h1><?php echo $this->__('Customer Testimonials');?></h1>
-        <?php if(Mage::getStoreConfig('testimonial/testimonial_options/allow_customers_write_testimonial') == 1):?>
-		<div class="submit-testimonial">
-				<button class="button" onclick="setLocation('<?php echo $this->getFormUrl(); ?>')">
-					<span>
-						<span>
-							<?php echo $this->__('Submit Your Testimonial');?>					
-						</span>
-					</span>
-				</button>
-		</div>
-        <?php endif ?>
     </div>
-	<?php echo $this->getPagerHtml();?>
+	
+	<div class="full-width">
+		<div class="pull-left">
+			<?php if(Mage::getStoreConfig('testimonial/testimonial_options/allow_customers_write_testimonial') == 1):?>
+			<div class="submit-testimonial">
+					<button class="button" onclick="setLocation('<?php echo $this->getFormUrl(); ?>')">
+						<span>
+							<span>
+								<?php echo $this->__('Submit Your Testimonial');?>					
+							</span>
+						</span>
+					</button>
+			</div>
+			<?php endif ?>
+		</div>
+		<div class="pull-right">
+			<?php echo $this->getPagerHtml();?>
+		</div>
+	</div>
 	<?php if ($testimonial->getSize()): ?>
 		<?php $i=0; foreach ($testimonial as $obj):?>
 			<?php if($obj->getStatus()==1): ?>
