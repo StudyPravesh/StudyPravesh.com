@@ -6,10 +6,20 @@ $skinURL			=		$this->getSkinUrl('images/');
 //	Creating dynamic form action url
 function OnSubmitForm(){
 	var category	=	jQuery('#category').val();
+	var categoryUrl = 	'schools.html';
+	if(category==1){
+		categoryUrl = 	'schools.html';
+	}else if(category==2){
+		categoryUrl = 	'coaching-institutes.html';
+	}else if(category==3){
+		categoryUrl = 	'colleges.html';
+	}else if(category==4){
+		categoryUrl = 	'universities.html';
+	}
 	var course		=	jQuery('#course').val();
 	var state		=	jQuery('#state').val();
 	var city		=	jQuery('#city').val();
-	var url			= 	category + '?course=' + course +'&state=' + state +'&city=' + city;
+	var url			= 	categoryUrl + '?course=' + course +'&state=' + state +'&city=' + city;
 	//alert(url);
 	jQuery("#filterFrm").attr("action");
 	jQuery("#filterFrm").attr("action", '<?php echo Mage::getUrl()?>' + url);
