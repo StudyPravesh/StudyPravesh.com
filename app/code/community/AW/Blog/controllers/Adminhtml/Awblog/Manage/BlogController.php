@@ -142,9 +142,13 @@ class AW_Blog_Adminhtml_Awblog_Manage_BlogController extends Mage_Adminhtml_Cont
                     }
                 }
             }
-
+			
+			//	S:VA	Modify the post url/identifier
+			//echo '<pre>';print_r($data);die;
+			$identifier	=	strtolower($data['identifier']);
             $model
                 ->setData($data)
+				->setIdentifier($identifier)	//	S:VA
                 ->setId($this->getRequest()->getParam('id'))
             ;
 
