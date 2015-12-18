@@ -25,23 +25,25 @@
 	<?php if ($testimonial->getSize()): ?>
 		<?php $i=0; foreach ($testimonial as $obj):?>
 			<?php if($obj->getStatus()==1): ?>
-			<div class="customer-testimonials-content<?php if($i==0):?> first<?php endif;?><?php if($i==(count($testimonial)-1)):?> last<?php endif;?>" name="<?php echo $obj->getName(); ?>" id="<?php echo $obj->getName(); ?>">
-				<div class="testimonial-content">
-                    <div class="testimonial-content-avatar">
+			<div class="customer-testimonials-content<?php if($i==0):?> first<?php endif;?><?php if($i==(count($testimonial)-1)):?> last<?php endif;?> full-width pull-left" name="<?php echo $obj->getName(); ?>" id="<?php echo $obj->getName(); ?>" style="margin-bottom:20px">
+				<div class="testimonial-content full-width pull-left" style="margin-bottom:10px">
+                    <div class="testimonial-content-avatar pull-left" style="width:11%">
                         <?php
                             if($obj->getAvatarName() != ''){
                                 $avatarLink = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) .'magebuzz/avatar/'.$obj->getAvatarName();
-                                ?><img src="<?php echo $avatarLink ?>" alt="test" height="120" width="120" /><?php
+                                ?><img src="<?php echo $avatarLink ?>" alt="test" style="max-width:100%" /><?php
                             }
                         ?>
                     </div>
-					<?php echo $obj->getTestimonial();?>
-				</div>
-				<div class="testimonial-source">
-					<span class="testimonial-author"><?php echo $obj->getName(); ?></span>
-					<span class="testimonial-date">
-						<?php echo date('F d, Y', Mage::getModel('core/date')->gmtTimestamp($obj->getCreatedTime())); ?>
-					</span>
+					<div class="testimonial-content-text pull-right" style="width:88%">
+						<?php echo $obj->getTestimonial();?><br>
+						<div class="testimonial-source full-width pull-left" style="color:#000000; font-size:11px;">
+							<span class="testimonial-author"><?php echo $obj->getName(); ?></span>
+							<span class="testimonial-date">
+								<?php echo date('F d, Y', Mage::getModel('core/date')->gmtTimestamp($obj->getCreatedTime())); ?>
+							</span>
+						</div>
+					</div>
 				</div>
 			</div>
 			<?php endif ?>
