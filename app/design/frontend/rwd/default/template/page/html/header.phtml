@@ -23,22 +23,32 @@ $skinURL			=		$this->getSkinUrl('images/');
 <div class="header-language-background">
     <div class="header-language-container">
         <div class="pull-left">
-			<span class="pull-left mR10">Tel: +91 9983274000</span> <span class="pull-left mL10">Mail us : <a href="mailto:info@studypravesh.com">info@studypravesh.com</a></span>
+			<span class="pull-left mR10">Tel: 0141-2785628</span> <span class="pull-left mL10">Mail us : <a href="mailto:info@studypravesh.com">info@studypravesh.com</a></span>
 		</div>
 		<div class="pull-right">
 			<a href="<?php echo $baseURL;?>customer/account/login/">Login</a> | <a href="<?php echo $baseURL;?>customer/account/create/">Signup</a>
- 		</div>
+		</div>
     </div>
 </div>
 
 <header id="header" class="page-header full-width">
     <div class="row">
 		<div class="page-header-container">
-			<a class="logo" href="<?php echo $this->getUrl('') ?>">
+			<a class="logo pull-left" href="<?php echo $this->getUrl('') ?>">
 				<img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" class="large" />
 				<img src="<?php echo $this->getLogoSrcSmall() ?>" alt="<?php echo $this->getLogoAlt() ?>" class="small" />
 			</a>
-
+			<div class="pull-left blink_me">
+				Sabse Saste Dakhile
+			</div>
+			<style>
+			.blink_me {
+			      animation: blinker 2s linear infinite; font-style: italic; color: #ffffff; font-size: 25px; margin-top: 30px;
+			}
+			@keyframes blinker {  
+			  50% { opacity: 0.0; }
+			}
+			</style>
 			<?php // In order for the language switcher to display next to logo on smaller viewports, it will be moved here.
 				  // See app.js for details 
 				  //<div class="store-language-container"></div>
@@ -103,47 +113,11 @@ $skinURL			=		$this->getSkinUrl('images/');
 			<li><a href="<?php echo $this->getUrl('') ?>">Home</a></li>
 			<li><a href="<?php echo $this->getUrl('about-us') ?>">About us</a></li>
 			<li><a href="<?php echo $this->getUrl('contacts') ?>">Contact us</a></li>
+            <li><a href="<?php echo $this->getUrl('blog') ?>">Blog</a></li>
+            <li class="pull-right"><?php echo $this->getChildHtml('topSearch') ?></li>
 		</ul>
 	</div>
 </div>
-
-<div class="stiky-header header-language-background full-width">
-	<div class="navigation row">
-		<a class="pull-left" href="<?php echo $this->getUrl('') ?>">
-			<img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" class="large" style="max-height:41px;" />
-		</a>
-		<ul class="pull-right">
-			<li><a href="<?php echo $this->getUrl('') ?>">Home</a></li>
-			<li><a href="<?php echo $this->getUrl('about-us') ?>">About us</a></li>
-			<li><a href="<?php echo $this->getUrl('contacts') ?>">Contact us</a></li>
-			<li><a href="<?php echo $baseURL;?>customer/account/login">Login</a></li>
-			<li><a href="<?php echo $baseURL;?>customer/account/create">Signup</a></li>
-		</ul>
-	</div>
-</div>
-
-
-<script>
-jQuery(function(){
-		var stickyTop 		= 	jQuery('.stiky-header').offset().top;	//	fixed height of the element ".add-to-cart" 
-		var windowHeight	=	jQuery(window).height();				//	fixed height of the scrolled window
-		var lastScrollTop 	= 	0;										//	variable height which was scrolled by user
-		jQuery(window).scroll(function(){ 								// 	scroll event
-			var windowTop 		= 	jQuery(window).scrollTop();			//	height of window that have been scrolled
-			if (  windowTop => stickyTop ){			//	console.log('sticky element visible now');
-				jQuery('.stiky-header').addClass('bsticky');
-			}
-			if (  windowTop < stickyTop ){			//	console.log('sticky element visible now');
-				jQuery('.stiky-header').removeClass('bsticky');
-			}
-			lastScrollTop = windowTop;
-		});
-	
-});	
-</script>
-
-
-
 <?php if($this->getIsHomePage()) { ?>
 <div class="hero-slider full-width">
 	<div id="hero-slider" style="max-width:1500px; margin:0 auto;">
