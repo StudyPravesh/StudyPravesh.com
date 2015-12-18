@@ -26,9 +26,12 @@ class Magebuzz_Testimonial_Block_Sidebar extends Mage_Core_Block_Template {
   public function getTestimonialsLast(){
 		$limit = Mage::helper('testimonial')->getMaxTestimonialsOnSidebar();
 		$collection = Mage::getModel('testimonial/testimonial')->getCollection();
-		$collection->setOrder('created_time', 'DESC');
+		$collection->addFieldToFilter('avatar_name', array('neq'=>''));		//	S:VA	load testimonials with images only
+		//$collection->setOrder('created_time', 'DESC');
+		$collection->getSelect()->order(new Zend_Db_Expr('RAND()'));
 		$collection->addFieldToFilter('status',1);
 		$collection->setPageSize($limit);
+		//$collection->load(1);die;
 		return $collection;
 	}
 		
