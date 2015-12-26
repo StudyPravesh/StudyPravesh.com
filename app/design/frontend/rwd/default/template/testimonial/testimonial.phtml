@@ -27,15 +27,15 @@
 			<?php if($obj->getStatus()==1): ?>
 			<div class="customer-testimonials-content<?php if($i==0):?> first<?php endif;?><?php if($i==(count($testimonial)-1)):?> last<?php endif;?> full-width pull-left" name="<?php echo $obj->getName(); ?>" id="<?php echo $obj->getName(); ?>" style="margin-bottom:20px">
 				<div class="testimonial-content full-width pull-left" style="margin-bottom:10px">
-                    <div class="testimonial-content-avatar pull-left" style="width:11%">
-                        <?php
-                            if($obj->getAvatarName() != ''){
-                                $avatarLink = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) .'magebuzz/avatar/'.$obj->getAvatarName();
-                                ?><img src="<?php echo $avatarLink ?>" alt="test" style="max-width:100%" /><?php
-                            }
-                        ?>
-                    </div>
-					<div class="testimonial-content-text pull-right" style="width:88%">
+                    <?php
+						$width='100%';
+						if($obj->getAvatarName() != ''){
+							$width='88%';
+							$avatarLink = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) .'magebuzz/avatar/'.$obj->getAvatarName();
+						?>
+							<div class="testimonial-content-avatar pull-left" style="width:11%"><img src="<?php echo $avatarLink ?>" alt="test" style="max-width:100%" /></div>
+                    <?php } ?>
+					<div class="testimonial-content-text pull-right" style="width:<?php echo $width;?>">
 						<?php echo $obj->getTestimonial();?><br>
 						<div class="testimonial-source full-width pull-left" style="color:#000000; font-size:11px;">
 							<span class="testimonial-author"><?php echo $obj->getName(); ?></span>
