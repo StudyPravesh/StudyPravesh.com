@@ -4163,6 +4163,9 @@ address {
   font-size: 11px;
   padding: 30px 0;
 }
+#checkout-progress-wrapper address {
+  text-align: left;
+}
 @media only screen and (max-width: 1199px) {
   .footer .links {
     width: 22.65625%;
