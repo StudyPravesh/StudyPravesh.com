@@ -1,42 +1,16 @@
 <?php
 class CodeMasterz_QueryManager_Helper_Data extends Mage_Core_Helper_Abstract{
 	
-	public function getUaeCities() {
-        $helper = Mage::helper('directory');
-        $cities = array(
-            $helper->__('Abu Dhabi'),
-            $helper->__('Ajman'),
-            $helper->__('Al Ain'),
-            $helper->__('Dubai'),
-            $helper->__('Fujairah'),
-            $helper->__('Ras al Khaimah'),
-            $helper->__('Sharjah'),
-            $helper->__('Umm al Quwain'),
-        );
-        return $cities;
-    }
- 
-    public function getUaeCitiesAsDropdown($selectedCity = '') {
-        $cities = $this->getUaeCities();
-        $options = '';
-        foreach($cities as $city){
-            $isSelected = $selectedCity == $city ? ' selected="selected"' : null;
-            $options .= '<option value="' . $city . '"' . $isSelected . '>' . $city . '</option>';
-        }
-        return $options;
-    }
-	
-	
 	public function getCoursesAsDropdown($categoryId){
 		$resource 	= 	Mage::getSingleton('core/resource');
 		$readConnection = $resource->getConnection('core_read');
 		$table1 	= 	$resource->getTableName('eav/attribute_option');
 		$table2 	= 	$resource->getTableName('eav/attribute_option_value');
 		
-		$query 		= 	"SELECT et2.option_id, et2.value
+		$query 		= 	"SELECT et2.option_id, et2.value, et1.sort_order
 							FROM $table1 AS et1
 							LEFT JOIN $table2 AS et2 ON et1.option_id = et2.option_id 
-							WHERE et1.parent_attribute_id='$categoryId' ORDER BY et2.value ASC";
+							WHERE et1.parent_attribute_id='$categoryId' && et1.attribute_id='135' ORDER BY et1.sort_order ASC";
 		//echo $query;
         $results 	= 	$readConnection->fetchAll($query);
 		//echo '<pre>';print_r($results);
@@ -77,6 +51,39 @@ class CodeMasterz_QueryManager_Helper_Data extends Mage_Core_Helper_Abstract{
         }
         return $options;
     }
+	
+	
+	public function getStateName($stateId) {
+		$region = Mage::getModel('directory/region')->load($stateId);
+		return $region->getName();
+	}
+	
+	
+	public function getCityName($cityId) {
+		$collection 	= 	Mage::getModel('directorycity/directorycity')
+								->getCollection()
+								->addFieldToSelect('city_name')
+								->addFieldToFilter('city_id', array('eq' => $cityId))
+								->setPageSize(1)
+								->load();
+								//->load(1);die;
+								//echo '<pre>';print_r($collection->getData());die;
+		if( $collection->count() ){
+			$data	=	$collection->getData();
+			return $data[0]['city_name'];
+		}
+	}
+	
+	
+	public function getCourseName($courseId) {
+		$_product 	= Mage::getModel('catalog/product');
+		$attr 		= $_product->getResource()->getAttribute("course");
+		if ($attr->usesSource()) {
+			return $colorLabel = $attr->getSource()->getOptionText($courseId);
+			//echo $color_id = $attr->getSource()->getOptionId($colorLabel);
+		}		
+	}
+	
 	
 }
 	 

@@ -63,13 +63,17 @@ class CodeMasterz_QueryManager_IndexController extends Mage_Core_Controller_Fron
 		// Transactional Email Template's ID
 		$templateId 	= 	'query_for_apply_email_template';	//here you can use template id defined in config.xml or you can use template ID in database (would be 1,2,3,4 .....etc)
 		
+		$stateName		=	Mage::helper('querymanager')->getStateName($post['state']);
+		$cityName		=	Mage::helper('querymanager')->getCityName($post['city']);
+		$courseName		=	Mage::helper('querymanager')->getCourseName($post['course_applied_for']);
+		
 		// Set variables to use them in email template
 		$emailTemplateVariables 	= 	array(	'visitor_name' 	=> $post['name'],
 												'visitor_email' => $post['email'],
-												'state' 		=> $post['state'],
-												'city' 			=> $post['city'],
+												'state' 		=> $stateName,
+												'city' 			=> $cityName,
 												'mobile' 		=> $post['mobile'],
-												'course' 		=> $post['course_applied_for'],
+												'course' 		=> $courseName,
 												'message' 		=> $post['message']
 										);
 		// Set recipient information
