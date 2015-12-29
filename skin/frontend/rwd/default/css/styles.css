@@ -3176,17 +3176,16 @@ body {
 /* ============================================ *
  * Header
  * ============================================ */
-@media only screen and (min-width: 771px) {
+.page-header {
+    background:#273c4f;
+  }
+  
+ @media only screen and (min-width: 771px) {
   .row {
     max-width: 1260px;
     margin: 0 auto;
     padding: 0 30px;
   }
-  
-  .page-header {
-    background:#273c4f;
-  }
-  
 
   .page-header-container {
     position: relative;
@@ -3248,11 +3247,6 @@ body {
   color: #e6e6e6;
 }
 
-@media only screen and (max-width: 770px) {
-  .header-language-background {
-    display: none;
-  }
-}
 /* ============================================ *
  * Logo
  * ============================================ */
