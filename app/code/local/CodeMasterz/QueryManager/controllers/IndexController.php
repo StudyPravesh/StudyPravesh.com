@@ -22,8 +22,16 @@ class CodeMasterz_QueryManager_IndexController extends Mage_Core_Controller_Fron
 		Process the form data on ajax form submit
 	*/
 	public function AjaxPostAction() {
+		$this->save();
+	}
+	
+	
+	/*
+		Function to save the form data in db
+	*/
+	public function save(){
 		$params = 	$this->getRequest()->getParams();
-		//echo '<pre>';print_r($params);die;
+		//echo '<pre>';print_r($params);
 		$model 	= 	Mage::getModel('querymanager/querymanager');
 		$model->setData('query_type', 	'Query for Apply');
 		$model->setData('name', 		$params['name']);
@@ -36,16 +44,56 @@ class CodeMasterz_QueryManager_IndexController extends Mage_Core_Controller_Fron
 
 		try {
 			$model->save();
+			$this->sendQueryForApplyEmail();		//	send email to admin
 			echo 'Thank you for your query :)';
 		} catch (Exception $e) {
 			Mage::log($e->getMessage());
-			echo 'Sorry! There is some issue submiting the query.';
+			echo 'Sorry! There is some issue submiting the query:(';
 		}
 	}
+	
+	
+	/*
+		Function to send email to admin with the contents submitted on the form
+	*/
+	public function sendQueryForApplyEmail(){
+		$post			=	$this->getRequest()->getPost();
+		//echo '<pre>';print_r($post);
+		
+		// Transactional Email Template's ID
+		$templateId 	= 	'query_for_apply_email_template';	//here you can use template id defined in config.xml or you can use template ID in database (would be 1,2,3,4 .....etc)
+		
+		// Set variables to use them in email template
+		$emailTemplateVariables 	= 	array(	'visitor_name' 	=> $post['name'],
+												'visitor_email' => $post['email'],
+												'state' 		=> $post['state'],
+												'city' 			=> $post['city'],
+												'mobile' 		=> $post['mobile'],
+												'course' 		=> $post['course_applied_for'],
+												'message' 		=> $post['message']
+										);
+		// Set recipient information
+		$receiverEmail 	= 	Mage::getStoreConfig('trans_email/ident_general/email');
+		//$receiverEmail 	= 	'info@studypravesh.com';
+		$receiverName 	= 	Mage::getStoreConfig('general/store_information/name');
+		
+		$storeId 		= 	Mage::app()->getStore()->getId();
+		$sender 		= 	array(	'name' 	=> $post['name'],
+									'email' => $post['email']
+							);
+				
+		Mage::getModel('core/email_template')
+				->addBcc('vaseemansari007@gmail.com')		//	Adding BCC by Vaseem
+				->sendTransactional($templateId, $sender, $receiverEmail, $receiverName, $emailTemplateVariables, $storeId);
+	}
+	
 	
 	public function getCoursesAction(){
 		$params 	= 	$this->getRequest()->getParams();
 		$categoryId	=	$params['category_id'];
+		if(empty($categoryId)){
+			$categoryId	=	1;	//	load schools courses by default	
+		}
         $result		=	Mage::helper('querymanager')->getCoursesAsDropdown($categoryId);
 		echo $result;
 	}

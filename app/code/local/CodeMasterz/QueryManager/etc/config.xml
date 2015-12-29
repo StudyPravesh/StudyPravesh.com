@@ -68,6 +68,15 @@
 		</connection>
 	  </querymanager_read>
 	</resources>
+	<template>
+		<email>
+			<query_for_apply_email_template translate="label" module="querymanager">
+				<label>Custom Email Template After Post Query</label>
+				<file>email_template_after_post_query.html</file>
+				<type>html</type>
+			</query_for_apply_email_template>
+		</email>
+	</template>
   </global>
   <admin>
 	<routers>
