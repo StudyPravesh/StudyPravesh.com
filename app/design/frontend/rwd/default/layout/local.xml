@@ -4,8 +4,9 @@
     	Default layout, loads most of the pages
     -->
 	<default>
-		
-			
+		<reference name="right">
+			<remove name="paypal.partner.right.logo"/>
+		</reference>			
 	</default>
 	
 	<!--	Contacts Page Only	-->
