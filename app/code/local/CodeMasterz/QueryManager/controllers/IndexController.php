@@ -45,10 +45,10 @@ class CodeMasterz_QueryManager_IndexController extends Mage_Core_Controller_Fron
 		try {
 			$model->save();
 			$this->sendQueryForApplyEmail();		//	send email to admin
-			echo 'Thank you for your query :)';
+			echo '<div class="full-width qr-thanks">Thank you for your query :). Our executive will contact you very soon.</div>';
 		} catch (Exception $e) {
 			Mage::log($e->getMessage());
-			echo 'Sorry! There is some issue submiting the query:(';
+			echo '<div class="full-width qr-thanks">Sorry! There is some issue submiting the query:(</div>';
 		}
 	}
 	
@@ -83,7 +83,7 @@ class CodeMasterz_QueryManager_IndexController extends Mage_Core_Controller_Fron
 		
 		$storeId 		= 	Mage::app()->getStore()->getId();
 		$sender 		= 	array(	'name' 	=> $post['name'],
-									'email' => $post['email']
+									'email' => 'noreply@studypravesh.com'//$post['email']
 							);
 				
 		Mage::getModel('core/email_template')

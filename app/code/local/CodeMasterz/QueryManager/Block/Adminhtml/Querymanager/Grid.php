@@ -144,7 +144,7 @@ class CodeMasterz_QueryManager_Block_Adminhtml_Querymanager_Grid extends Mage_Ad
 			$collection 	= 	Mage::getModel('directorycity/directorycity')
 									->getCollection()
 									->addFieldToSelect('*')
-									->addFieldToFilter('state_id', array('eq' => $stateId))
+									//->addFieldToFilter('state_id', array('eq' => $stateId))
 									->setOrder('city_name',ASC)
 									->load();
 									//->load(1);die;
@@ -169,7 +169,7 @@ class CodeMasterz_QueryManager_Block_Adminhtml_Querymanager_Grid extends Mage_Ad
 		static public function getOptionArray8()
 		{
             $data_array=array(); 
-			$data_array[0]='Course';
+			$data_array = Mage::helper("sarah")->getAllCourses(); 
             return($data_array);
 		}
 		static public function getValueArray8()
