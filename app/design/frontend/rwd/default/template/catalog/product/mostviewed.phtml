@@ -1,8 +1,8 @@
 <?php if (($_products = $this->getProductCollection()) && $_products->getSize()){ ?>
-<div class="full-width mB10">
+<div class="full-width">
 	<div class="heading full-width"><?php echo $this->__('Most Popular Institutions') ?></div>
   	<?php $_collectionSize = 5;//count($_products->getItems()); echo $_collectionSize; ?>
-    <div class="content-box full-width mB10">
+    <div class="content-box full-width">
 	    <ul class="featured product-boxes products-grid" id="products-grid-table">
     <?php $i=1; foreach ($_products->getItems() as $_product){ ?>
     	<li id="td_<?php echo $i;?>" <?php if($i%5==0 or $i==$_collectionSize){echo 'class="last"';} ?> >
@@ -13,11 +13,11 @@
 				<div class="detail-box full-width">
 					<div class="name"><h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a></h3></div>
 				</div>
-				<div class="a-center full-width p10">
+				<?php /*?><div class="a-center full-width p10">
 				<?php if($_product->getRatingSummary()){ ?>
 					<div class="full-width"><?php echo $this->getReviewsSummaryHtml($_product, 'short'); ?></div>
 				<?php } ?>
-					<?php /*?><div class="full-width">
+					<div class="full-width">
 						<div class="pull-left half-width">
 						<?php echo $this->getPriceHtml($_product, true) ?>
 						</div>
@@ -36,23 +36,35 @@
 						<li class="last"><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>"><?php echo $this->__('Add to Compare') ?></a></li>
 						<?php endif; ?>
 						</ul>
-					</div><?php */?>
-				</div>
+					</div>
+				</div><?php */?>
 			</div>
     	</li>
     <?php $i++; } $kol = $_collectionSize; ?>
     </ul>
 	<script type="text/javascript">
-	jQuery(document).ready(function(){
-		jQuery('#products-grid-table').slick({
-			arrows			: 	true,
-			dots			: 	false,
-			slidesToShow	: 	3,
-			slidesToScroll	: 	1,
-			autoplay: true,
-			autoplaySpeed: 5000
+		jQuery(document).ready(function(){
+			var wdth = jQuery(window).width();
+			if(wdth >= 768){
+				jQuery('#products-grid-table').slick({
+					arrows			: 	true,
+					dots			: 	false,
+					slidesToShow	: 	3,
+					slidesToScroll	: 	1,
+					autoplay: true,
+					autoplaySpeed: 5000
+				});
+			}else{
+				jQuery('#products-grid-table').slick({
+					arrows			: 	true,
+					dots			: 	false,
+					slidesToShow	: 	1,
+					slidesToScroll	: 	1,
+					autoplay: true,
+					autoplaySpeed: 5000
+				});
+			}
 		});
-	});
 	</script>
     </div>
 </div>

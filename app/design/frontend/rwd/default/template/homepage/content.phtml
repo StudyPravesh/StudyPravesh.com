@@ -36,13 +36,15 @@ function OnSubmitForm(){
             <select name="category" id="category" class="required-entry validate-select">
                 <option value="">Browse by</option>
                 <option value="1">School</option>
-                <option value="2">Coaching</option>
+                <option value="2">Coaching/Institutes</option>
                 <option value="3">College</option>
                 <option value="4">University</option>
             </select>
             
 <script type="text/javascript">
 Event.observe($('category'), 'change', function(event) {
+	jQuery('#course').attr('disabled','disabled');
+	jQuery('#course').find('option:selected').html('Please Wait...');
 	var action 		= 	"<?php echo $this->getUrl('querymanager/index/getCourses'); ?>";
 	var categoryId 	= 	$('category').value;	
 	var request 	= 	new Ajax.Request(action,
@@ -51,6 +53,7 @@ Event.observe($('category'), 'change', function(event) {
 			parameters: {category_id: categoryId},
 			onComplete: function(data) {
 				//alert(data.responseText);
+				jQuery('#course').removeAttr('disabled');
 				$('course').replace('<select id="course" name="course" class="required-entry validate-select">' + '<option value="">Select a Course</option>' + data.responseText + '</select>');
 			},
 			onSuccess: function (data) {
@@ -101,12 +104,14 @@ Event.observe($('category'), 'change', function(event) {
                 <input name="state" id="state" title="" value="" class="input-text required-entry"  placeholder="State"/>
             <?php } ?>
             
-            <select name="city" id="city" class="required-entry validate-select">
+            <select name="city" id="city" class="required-entry validate-select" disabled="disabled">
               <option value="">Select a City </option>
             </select>
             
             <script type="text/javascript">
 			Event.observe($('state'), 'change', function(event) {
+				jQuery('#city').find('option:selected').html('Please Wait...');
+				jQuery('#city').attr('disabled','disabled');
 				var action 	= 	"<?php echo $this->getUrl('querymanager/index/getCities'); ?>";
 				var stateId = 	$('state').value;
 				var request = 	new Ajax.Request(action,
@@ -150,7 +155,7 @@ Event.observe($('category'), 'change', function(event) {
         <div class="right-content">
           <div class="heading full-width">News &amp; Announcements</div>
           <div class="content-box">
-            <div class="full-width border-box-1px p10">
+            <div class="full-width border-box-1px p10" style="height: 292px; overflow-y: scroll; overflow-x: hidden; border:none;">
               <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('aw_blog/latest.phtml')->toHtml(); ?>
             </div>
           </div>
@@ -167,11 +172,9 @@ Event.observe($('category'), 'change', function(event) {
         	<?php echo $this->getLayout()->createBlock('catalog/product_mostviewed')->setTemplate('catalog/product/mostviewed.phtml')->toHtml();?>
             <?php echo $this->getLayout()->createBlock('reports/product_viewed')->setTemplate('reports/product_viewed_homepage.phtml')->toHtml(); ?>
         </div>
-        
         <div class="right-content">
           <?php echo $this->getLayout()->createBlock('testimonial/sidebar')->setTemplate('testimonial/sidebar/slider.phtml')->toHtml();?>
         </div>
-        
       </div>
     </div>
   </div>

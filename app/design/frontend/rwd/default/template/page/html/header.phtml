@@ -20,12 +20,12 @@
 $baseURL			=		Mage::getBaseUrl();
 $skinURL			=		$this->getSkinUrl('images/');
 ?>
-<div class="header-language-background">
+<div class="c-info-holder header-language-background">
     <div class="header-language-container">
-        <div class="pull-left">
+        <div class="contact-info-head pull-left">
 			<span class="pull-left mR10">Tel: 0141-2785628</span> <span class="pull-left mL10">Mail us : <a href="mailto:info@studypravesh.com">info@studypravesh.com</a></span>
 		</div>
-		<div class="pull-right">
+		<div class="login-register pull-right">
         	<?php
 			if (!$this->helper('customer')->isLoggedIn()){ 
 				echo '<a href="'.$this->getUrl("customer/account/login/").'">Login</a> | <a href="'.$this->getUrl("customer/account/create/").'">Signup</a>';
@@ -35,7 +35,7 @@ $skinURL			=		$this->getSkinUrl('images/');
 				echo 'Welcome '.$firstname.' | <a href="'.$this->getUrl('customer/account/logout/').'">Logout</a>'; 
 			} 
 			?>
-		</div>
+		</div> 
     </div>
 </div>
 
@@ -57,7 +57,23 @@ $skinURL			=		$this->getSkinUrl('images/');
 			<div id="header-nav" class="skip-content pull-right">
 				<?php echo $this->getChildHtml('topMenu') ?>
 			</div>
-			
+			<script>
+				jQuery('.mob-menu').click(function(){
+					if(jQuery('#header-nav').hasClass('skip-content')){
+						jQuery('#header-nav').removeClass('skip-content');
+						jQuery(this).css('z-index','11');
+						jQuery('.logo').addClass('on-nav-logo');
+						jQuery('.blink_me').addClass('on-nav-blink-me');
+						jQuery('body').addClass('nav-on');
+					}else{
+						jQuery('#header-nav').addClass('skip-content');
+						jQuery(this).css('z-index','initial');
+						jQuery('.logo').removeClass('on-nav-logo');
+						jQuery('.blink_me').removeClass('on-nav-blink-me');
+						jQuery('body').removeClass('nav-on');
+					}
+				});
+			</script>
 			<?php /*
 			<!-- Skip Links -->
 
@@ -71,35 +87,25 @@ $skinURL			=		$this->getSkinUrl('images/');
 					<span class="icon"></span>
 					<span class="label"><?php echo $this->__('Search'); ?></span>
 				</a>
-
 				<div class="account-cart-wrapper">
 					<a href="<?php echo $this->helper('customer')->getAccountUrl(); ?>" data-target-element="#header-account" class="skip-link skip-account">
 						<span class="icon"></span>
 						<span class="label"><?php echo $this->__('Account'); ?></span>
 					</a>
-
 					<!-- Cart -->
-
 					<div class="header-minicart">
 						<?php echo $this->getChildHtml('minicart_head'); ?>
 					</div>
 				</div>
-
 			</div>
-
-
 			<!-- Search -->
-
 			<div id="header-search" class="skip-content">
 				<?php echo $this->getChildHtml('topSearch') ?>
 			</div>
-
 			<!-- Account -->
-
 			<div id="header-account" class="skip-content">
 				<?php echo $this->getChildHtml('topLinks') ?>
 			</div>
-			
 			*/ ?>
 		</div>
     </div>
@@ -117,7 +123,7 @@ $skinURL			=		$this->getSkinUrl('images/');
 	</div>
 </div>
 <style>
-.blink_me {animation: blinker 2s linear infinite; font-style: italic; color: #ffffff; font-size: 18px;}
+.blink_me {animation: blinker 2s linear infinite; font-style: italic; color: #ffffff; font-size: 18px; margin-left: 40px;}
 @keyframes blinker { 50% { opacity: 0.0; }}
 </style>
 <?php if($this->getIsHomePage()) { ?>
