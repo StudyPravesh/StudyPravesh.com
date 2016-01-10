@@ -10677,6 +10677,7 @@ div.calendar table td.button {
 .home .main-content .right-content .testimonials li .tm-name{padding:20px 0px; text-align:center; font-size: 16px; color:#00356b}
 
 .mob-menu{display:none;}
+a.mob-menu:hover{color:#ffffff; text-decoration:none}
 
 @media (max-width:768px){
 	.logo{width:25%; padding: 10px;}
