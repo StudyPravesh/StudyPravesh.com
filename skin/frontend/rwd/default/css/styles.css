@@ -2743,21 +2743,21 @@ input:-moz-placeholder {
  */
 p.required,
 .validation-advice {
-  margin: 5px 0 0;
-  color: #df280a;
-  font-size: 13px;
+  margin:5px 0 0;
+  color:#df280a;
+  font-size:12px;
 }
 
 /* ============================================ *
  * Form List
  * ============================================ */
 .form-list > li {
-  margin-bottom: 10px;
+  margin-bottom:10px;
 }
 .form-list select {
-  margin-top: 4px;
-  width: 365px;
-  max-width: 100%;
+  margin-top:4px;
+  width:365px;
+  max-width:100%;
 }
 .form-list .input-range .input-text {
   width: 74px;
@@ -10649,7 +10649,7 @@ div.calendar table td.button {
 .home .home-filter{width:100%; float:left; padding:20px; background:#273c4f; margin-bottom:30px; margin-top: -60px;}
 .home .home-filter select{border:1px solid #d4d7d9; border-radius:2px; width:130px; margin-right:2px; float:left; height:35px;}
 .home .home-filter input[type="submit"]{width:130px; float:right; height:35px; border:1px solid #d4950a; border-radius:2px; background:#ffae00; text-align:center; color:#ffffff; text-shadow:1px 1px #f6a700;}
-
+.home .home-filter .inputBox{width:140px; float:left;}
 .home .main-content{}
 .home .main-content .left-content{width:69%; float:left;}
 .home .main-content .right-content{width:29%; float:right;}
