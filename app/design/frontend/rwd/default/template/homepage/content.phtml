@@ -32,39 +32,39 @@ function OnSubmitForm(){
     <div class="row p0">
       <div class="home-filter">
         <form name="filterFrm" id="filterFrm" method="post" onsubmit="return OnSubmitForm();">
-            
-            <select name="category" id="category" class="required-entry validate-select">
-                <option value="">Browse by</option>
-                <option value="1">School</option>
-                <option value="2">Coaching/Institutes</option>
-                <option value="3">College</option>
-                <option value="4">University</option>
-            </select>
-            
-<script type="text/javascript">
-Event.observe($('category'), 'change', function(event) {
-	jQuery('#course').attr('disabled','disabled');
-	jQuery('#course').find('option:selected').html('Please Wait...');
-	var action 		= 	"<?php echo $this->getUrl('querymanager/index/getCourses'); ?>";
-	var categoryId 	= 	$('category').value;	
-	var request 	= 	new Ajax.Request(action,
-		{
-			method: 'GET',
-			parameters: {category_id: categoryId},
-			onComplete: function(data) {
-				//alert(data.responseText);
-				jQuery('#course').removeAttr('disabled');
-				$('course').replace('<select id="course" name="course" class="required-entry validate-select">' + '<option value="">Select a Course</option>' + data.responseText + '</select>');
-			},
-			onSuccess: function (data) {
-				
-			},
-			onFailure: ''
-		}
-	);
-});
-</script>
-            
+            <div class="inputBox">
+				<select name="category" id="category" class="required-entry validate-select">
+					<option value="">Browse by</option>
+					<option value="1">School</option>
+					<option value="2">Coaching/Institutes</option>
+					<option value="3">College</option>
+					<option value="4">University</option>
+				</select>
+			</div>
+			<script type="text/javascript">
+				Event.observe($('category'), 'change', function(event) {
+					jQuery('#course').attr('disabled','disabled');
+					jQuery('#course').find('option:selected').html('Please Wait...');
+					var action 		= 	"<?php echo $this->getUrl('querymanager/index/getCourses'); ?>";
+					var categoryId 	= 	$('category').value;	
+					var request 	= 	new Ajax.Request(action,
+						{
+							method: 'GET',
+							parameters: {category_id: categoryId},
+							onComplete: function(data) {
+								//alert(data.responseText);
+								jQuery('#course').removeAttr('disabled');
+								$('course').replace('<select id="course" name="course" class="required-entry validate-select">' + '<option value="">Select a Course</option>' + data.responseText + '</select>');
+							},
+							onSuccess: function (data) {
+								
+							},
+							onFailure: ''
+						}
+					);
+				});
+			</script>
+            <div class="inputBox">
             <?php	//	Showing courses
 			$attribute 			= 	Mage::getModel('eav/config')->getAttribute('catalog_product', 'course');
 			$courseCollection 	= 	$attribute->getSource()->getAllOptions(true, true);
@@ -83,8 +83,8 @@ Event.observe($('category'), 'change', function(event) {
             <?php }else{ ?>
                 <input name="course" id="course" title="" value="" class="input-text required-entry"  placeholder="Course"/>
             <?php } ?>
-            
-            
+            </div>
+            <div class="inputBox">
 			<?php	//	Showing states
 			$attribute 	= 	Mage::getModel('eav/config')->getAttribute('catalog_product', 'state');
 			$stateCollection = 	$attribute->getSource()->getAllOptions(true, true);
@@ -103,11 +103,12 @@ Event.observe($('category'), 'change', function(event) {
             <?php }else{ ?>
                 <input name="state" id="state" title="" value="" class="input-text required-entry"  placeholder="State"/>
             <?php } ?>
-            
+            </div>
+			<div class="inputBox">
             <select name="city" id="city" class="required-entry validate-select" disabled="disabled">
               <option value="">Select a City </option>
             </select>
-            
+            </div>
             <script type="text/javascript">
 			Event.observe($('state'), 'change', function(event) {
 				jQuery('#city').find('option:selected').html('Please Wait...');
