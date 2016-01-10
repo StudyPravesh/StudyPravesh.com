@@ -10684,7 +10684,7 @@ div.calendar table td.button {
 	.home .main-content .left-content, .home .main-content .right-content{width:100%; float:left;}
 	.home .main-content .right-content .testimonials li .tm-img,
 	.home .main-content .right-content .testimonials li .tm-detail{width:50%!important; float:left}
-	
+	.home .home-filter .inputBox{width:134px;}
 	.mob-menu{display:block; float:right; padding:23px 16px; color:#ffffff; position:relative}
 	#header-nav{position:fixed; background:rgba(0,0,0,.6); width:100vw; height:100vh; z-index:10; top:0px; left:0px;}
 	#nav{width:40vw; height: 100vh; background:#001a29; padding-top: 14.5vh; overflow-y:auto;}
@@ -10713,7 +10713,7 @@ div.calendar table td.button {
 	.c-info-holder{padding-bottom:0px!important}
 	.contact-info-head{width:100%; text-align:center;}
 	.contact-info-head span{float:none!important; display:inline-block; }
-	
+	.home .home-filter .inputBox{width:100%;}
 	.login-register a{display:inline-block; padding:10px 5px;}
 	.c-info-holder{padding-bottom:0px!important}
 	.blink_me{font-size:15px!important; top:31px!important; left:10px!important;}
