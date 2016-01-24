@@ -1,4 +1,4 @@
-<!--@subject {{var store.getFrontendName()}}: Shipment # {{var shipment.increment_id}} for Order # {{var order.increment_id}} @-->
+<!--@subject {{var store.getFrontendName()}}: Shipment # {{var shipment.increment_id}} for Admission # {{var order.increment_id}} @-->
 <!--@vars
 {"store url=\"\"":"Store Url",
 "var logo_url":"Email Logo Image Url",
@@ -28,11 +28,11 @@
             <table cellpadding="0" cellspacing="0" border="0">
                 <tr>
                     <td class="email-heading">
-                        <h1>Thank you for your order from {{var store.getFrontendName()}}.</h1>
-                        <p>You can check the status of your order by <a href="{{store url="customer/account/"}}"">logging into your account</a>.</p>
+                        <h1>Thank you for your admission from {{var store.getFrontendName()}}.</h1>
+                        <p>You can check the status of your admission by <a href="{{store url="customer/account/"}}">logging into your account</a>.</p>
                     </td>
                     <td class="store-info">
-                        <h4>Order Questions?</h4>
+                        <h4>Admission Questions?</h4>
                         <p>
                             {{depend store_phone}}
                             <b>Call Us:</b>
@@ -53,7 +53,7 @@
     <tr>
         <td class="order-details">
             <h3>Your Shipment <span class="no-link">#{{var shipment.increment_id}}</span></h3>
-            <p>Order <span class="no-link">#{{var order.increment_id}}</span></p>
+            <p>Admission <span class="no-link">#{{var order.increment_id}}</span></p>
         </td>
     </tr>
     <tr class="order-information">
@@ -72,20 +72,6 @@
                         <h6>Bill to:</h6>
                         <p><span class="no-link">{{var order.billing_address.format('html')}}</span></p>
                     </td>
-                    {{depend order.getIsNotVirtual()}}
-                    <td class="address-details">
-                        <h6>Ship to:</h6>
-                        <p><span class="no-link">{{var order.shipping_address.format('html')}}</span></p>
-                    </td>
-                    {{/depend}}
-                </tr>
-                <tr>
-                    {{depend order.getIsNotVirtual()}}
-                    <td class="method-info">
-                        <h6>Shipping method:</h6>
-                        <p>{{var order.shipping_description}}</p>
-                    </td>
-                    {{/depend}}
                     <td class="method-info">
                         <h6>Payment method:</h6>
                         {{var payment_html}}
