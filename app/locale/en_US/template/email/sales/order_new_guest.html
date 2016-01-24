@@ -71,20 +71,8 @@
                         <h6>Bill to:</h6>
                         <p><span class="no-link">{{var order.getBillingAddress().format('html')}}</span></p>
                     </td>
-                    {{depend order.getIsNotVirtual()}}
-                    <td class="address-details">
-                        <h6>Ship to:</h6>
-                        <p><span class="no-link">{{var order.getShippingAddress().format('html')}}</span></p>
-                    </td>
-                    {{/depend}}
                 </tr>
                 <tr>
-                    {{depend order.getIsNotVirtual()}}
-                    <td class="method-info">
-                        <h6>Shipping method:</h6>
-                        <p>{{var order.shipping_description}}</p>
-                    </td>
-                    {{/depend}}
                     <td class="method-info">
                         <h6>Payment method:</h6>
                         {{var payment_html}}

@@ -7,15 +7,15 @@ Add New Address,Add New Address
 Add New Condition,Add New Condition
 Add coupon code for shopping cart,Add coupon code for admission bucket
 Add gift messages to shopping cart,Add gift messages to admission bucket
-Add product to shopping cart,Add product to admission bucket
-Add product(s) to shopping cart,Add product(s) to admission bucket
+Add product to shopping cart,Add educational institute to admission bucket
+Add product(s) to shopping cart,Add educational institute(s) to admission bucket
 Add to Cart,Add to Bucket
 Add to Compare,Add to Compare
 Add to Wishlist,Add to Wishlist
-Additional Product Info,Additional Product Info
+Additional Product Info,Additional Educational Institute Info
 Address,Address
 Address %s of %s,Address %s of %s
-After Adding a Product Redirect to Shopping Cart,After Adding a Product Redirect to Admission Bucket
+After Adding a Product Redirect to Shopping Cart,After Adding a Educational Institute Redirect to Admission Bucket
 Allow Guest Checkout,Allow Guest Checkout
 Already registered?,Already registered?
 An error occurred in the process of payment,An error occurred in the process of payment
@@ -42,7 +42,7 @@ Cannot add item to the shopping cart.,Cannot add institution to the admission bu
 Cannot add the item to shopping cart,Cannot add the institution to admission bucket
 Cannot add the item to shopping cart.,Cannot add the institution to admission bucket.
 Cannot apply the coupon code.,Cannot apply the coupon code.
-Cannot configure product.,Cannot configure product.
+Cannot configure product.,Cannot configure educational institute.
 Cannot open the overview page,Cannot open the overview page
 Cannot process the item.,Cannot process the institution.
 Cannot remove the item.,Cannot remove the institution.
@@ -50,7 +50,7 @@ Cannot update shopping cart.,Cannot update admission bucket.
 Cannot update the item.,Cannot update the institution.
 Card Verification Number Visual Reference,Card Verification Number Visual Reference
 Cart,Bucket
-Cart Product API,Bucket Product API
+Cart Product API,Bucket Educational Institute API
 Cart Subtotal:,Bucket Subtotal:
 Change,Change
 Change Billing Address,Change Billing Address
@@ -69,18 +69,18 @@ Checkout with Multiple Addresses,Checkout with Multiple Addresses
 City,City
 Clear Shopping Cart,Clear Admission Bucket
 "Click <a href=""%s"" onclick=""this.target=\'_blank\'"">here to print</a> a copy of your order confirmation.","Click <a href=""%s"" onclick=""this.target=\'_blank\'"">here to print</a> a copy of your admission confirmation."
-"Click <a href=""%s"">here</a> to continue shopping.","Click <a href=""%s"">here</a> to continue shopping."
+"Click <a href=""%s"">here</a> to continue shopping.","Click <a href=""%s"">here</a> to continue browsing educational institutions."
 Close,Close
 Company,Company
 Condition Name,Condition Name
-Configurable Product Image,Configurable Product Image
+Configurable Product Image,Configurable Educational Institute Image
 Configure Cart Item,Configure Bucket Institution
 Confirm Password,Confirm Password
 Content,Content
 Content Height,Content Height
 Content Height (css),Content Height (css)
 Continue,Continue
-Continue Shopping,Continue Shopping
+Continue Shopping,Continue to Home
 Continue to Billing Information,Continue to Billing Information
 Continue to Review Your Order,Continue to Review Your Admission Details
 Continue to Shipping Information,Continue to Shipping Information
@@ -137,12 +137,12 @@ Forgot your password?,Forgot your password?
 Get a Quote,Get a Quote
 Get list of available payment methods,Get list of available payment methods
 Get list of available shipping methods,Get list of available admission methods
-Get list of products in shopping cart,Get list of products in admission bucket
+Get list of products in shopping cart,Get list of educational institutes in admission bucket
 Get terms and conditions,Get terms and conditions
 Get total prices for shopping cart,Get total fees for admission bucket
 Gift Message,Gift Message
 Grand Total:,Grand Total:
-Grouped Product Image,Grouped Product Image
+Grouped Product Image,Grouped Educational Institute Image
 HTML,HTML
 ID,ID
 Incl. Tax,Incl. Tax
@@ -195,8 +195,8 @@ One Page Checkout,One Page Checkout
 One Page Checkout Failure,One Page Checkout Failure
 One Page Checkout Overview,One Page Checkout Overview
 One Page Checkout Success,One Page Checkout Success
-One item of products do not have identifier or sku,One Institution of products do not have identifier or sku
-One item of products is not belong any of quote item,One Institution of products is not belong any of quote Institution
+One item of products do not have identifier or sku,One educational institute do not have identifier or sku
+One item of products is not belong any of quote item,One educational institute is not belong any of quote Institution
 Order #,Admission Id
 Order Review,Admission Review
 Order Success,Admission is Done
@@ -236,9 +236,9 @@ Please specify shipping method.,Please specify shipping method.
 Please specify shipping methods for all addresses.,Please specify shipping methods for all addresses.
 Price,Fees
 Proceed to Checkout,Proceed to Admission
-Product,Product
-Product Name,Product Name
-Products,Products
+Product,Educational Institute
+Product Name,Educational Institute Name
+Products,Educational Institutes
 Qty,Qty
 Qty:,Qty:
 Quantity,Quantity
@@ -255,8 +255,8 @@ Remove Item,Remove Institution
 Remove This Item,Remove This Institution
 Remove coupon code from shopping cart,Remove coupon code from admission bucket
 Remove item,Remove Institution
-Remove product from shopping cart,Remove product from admission bucket
-Remove product(s) from shopping cart,Remove product(s) from admission bucket
+Remove product from shopping cart,Remove educational institute from admission bucket
+Remove product(s) from shopping cart,Remove educational institute(s) from admission bucket
 Require Customer To Be Logged In To Checkout,Require Customer To Be Logged In To Checkout
 Retrieve information about shopping cart,Retrieve information about admission bucket
 Review Order,Review Admission Details
@@ -301,9 +301,9 @@ Shopping Cart Sidebar Extra Actions,Admission Bucket Sidebar Extra Actions
 Shopping Cart is Empty,Admission Bucket is Empty
 Shopping cart ability to set coupon code,Admission Bucket ability to set coupon code
 Show Content as,Show Content as
-Some of the requested products are not available in the desired quantity.,Some of the requested products are not available in the desired quantity.
-Some of the requested products are unavailable.,Some of the requested products are unavailable.
-Some products quantities were recalculated because of quantity increment mismatch,Some products quantities were recalculated because of quantity increment mismatch
+Some of the requested products are not available in the desired quantity.,Some of the requested educational institutes are not available in the desired quantity.
+Some of the requested products are unavailable.,Some of the requested educational institutes are unavailable.
+Some products quantities were recalculated because of quantity increment mismatch,Some educational institutes quantities were recalculated because of quantity increment mismatch
 "Sorry, guest checkout is not enabled. Please try again or contact store owner.","Sorry, guest checkout is not enabled. Please try again or contact store owner."
 "Sorry, no quotes are available for this order at this time.","Sorry, no quotes are available for this admission at this time."
 State/Province,State/Province
@@ -319,12 +319,12 @@ Terms and Conditions,Terms and Conditions
 Terms and Conditions Information,Terms and Conditions Information
 Terms and conditions,Terms and conditions
 Text,Text
-Thank you for your purchase!,Thank you for your purchase!
+Thank you for your purchase!,Thank you for your admission!
 The condition has been deleted,The condition has been deleted
 The condition has been saved.,The condition has been saved.
 The onepage checkout is disabled.,The onepage checkout is disabled.
-The product could not be found.,The product could not be found.
-The product does not exist.,The product does not exist.
+The product could not be found.,The educational institute could not be found.
+The product does not exist.,The educational institute does not exist.
 "There are <a href=""%s"">%s items</a> in your cart.","There are <a href=""%s"">%s Institutions</a> in your cart."
 "There is <a href=""%s"">1 item</a> in your cart.","There is <a href=""%s"">1 Institution</a> in your cart."
 There is already a customer registered using this email address. Please login using this email address or enter a different email address to register your account.,There is already a customer registered using this email address. Please login using this email address or enter a different email address to register your account.
@@ -339,8 +339,8 @@ Update Cart,Update Bucket
 Update Qty &amp; Addresses,Update Qty &amp; Addresses
 Update Shopping Cart,Update Shopping Bucket
 Update Total,Update Total
-Update product quantities in shopping cart,Update product quantities in shopping bucket
-Update product(s) quantities in shopping cart,Update product(s) quantities in shopping bucket
+Update product quantities in shopping cart,Update educational institute quantities in admission bucket
+Update product(s) quantities in shopping cart,Update educational institute(s) quantities in admission bucket
 Use Billing Address,Use Billing Address
 VAT Number,VAT Number
 View Shopping Cart,View Admission Bucket
