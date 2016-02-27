@@ -163,10 +163,35 @@ function OnSubmitForm(){
         </div>
       </div>
     </div>
-    <div class="how-it-works full-width mB10 mT10">
-      <div class="row p0"><img style="max-width: 100%;" alt="" src="<?php echo $skinURL.'how-it-works.jpg';?>" /></div>
+    <div class="how-it-works full-width mB10 mT10 pB10 pT10">
+      <div class="row p0">
+		<div class="full-width p10 hw-heading"><span>How it Works</span></div>
+		<div style="width:33.3333%; float:left; padding:10px">
+			<img style="max-width:100%; margin:0 auto" alt="" src="<?php echo $skinURL.'hw-1.jpg';?>" />
+			<div class="full-width p10 hw-title"><a href="<?php echo $this->getUrl("customer/account/create/")?>">Student Signup</a></div>
+			<div class="full-width p10 hw-text">
+				Create a new account to get started. Registration is free for all students.
+			</div>
+			<div class="full-width p10 hw-pro"><span><a href="<?php echo $this->getUrl("customer/account/create/")?>">01</a></span></div>
+		</div>
+		<div style="width:33.3333%; float:left; padding:10px">
+			<img style="max-width:100%; margin:0 auto" alt="" src="<?php echo $skinURL.'hw-2.jpg';?>" />
+			<div class="full-width p10 hw-title"><a href="<?php echo $this->getUrl("coaching-institutes.html")?>">Choose Institutions</a></div>
+			<div class="full-width p10 hw-text">
+				Search institutions according to your requirement.
+			</div>
+			<div class="full-width p10 hw-pro"><span><a href="<?php echo $this->getUrl("coaching-institutes.html")?>">02</a></span></div>
+		</div>
+		<div style="width:33.3333%; float:left; padding:10px">
+			<img style="max-width:100%; margin:0 auto" alt="" src="<?php echo $skinURL.'hw-3.jpg';?>" />
+			<div class="full-width p10 hw-title"><a href="<?php echo $this->getUrl("checkout/cart")?>">Get Admission</a></div>
+			<div class="full-width p10 hw-text">
+				Apply with your details and submit the fee. It's a hassle free experience thereafter.
+			</div>
+			<div class="full-width p10 hw-pro"><span><a href="<?php echo $this->getUrl("checkout/cart")?>">03</a></span></div>
+		</div>
+	  </div>
     </div>
-    
     <div class="full-width mT10">
       <div class="row p0">
         <div class="left-content">
