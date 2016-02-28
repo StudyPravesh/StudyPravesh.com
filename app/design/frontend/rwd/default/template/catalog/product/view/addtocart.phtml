@@ -28,6 +28,53 @@
 <?php $buttonTitle = Mage::helper('core')->quoteEscape($this->__('Add to Cart')); ?>
 <?php if($_product->isSaleable()): ?>
     <div class="add-to-cart">
+    	
+        
+        
+        <?php if($_product->getTypeId() == "configurable"):
+		$total = 0;
+		$ids = $_product->getTypeInstance()->getUsedProductIds();
+		//echo '<pre>';print_r($ids);die;
+		?>
+		<ul>
+		<?php foreach ($ids as $id) :
+			$simpleproduct = Mage::getModel('catalog/product')->load($id); ?>
+		
+			<li><?php echo $simpleproduct->getName()." - ".(int)Mage::getModel('cataloginventory/stock_item')->loadByProduct($simpleproduct)->getQty(); ?>
+			</li>               
+			<?php echo $total = $total + (int)Mage::getModel('cataloginventory/stock_item')->loadByProduct($simpleproduct)->getQty(); ?>
+		
+		<?php endforeach;    ?>
+		<li><?php if ($total < 4) {
+			echo ("Only ".$total." Left!");
+		}?></li>
+		</ul>
+		<?php endif;
+		echo 'Only' . $_product->getQty() . ' left';
+		?>
+        <?php 
+		
+		foreach ($_product->getTypeInstance(true)->getUsedProducts(null, $_product) as $simple) {
+			//echo '<pre>';print_r($simple);die;
+			$stock = Mage::getModel('cataloginventory/stock_item')->loadByProduct($simple)->getQty();
+			//echo "<div class='mB10'>Hurry! Only ".(int)$stock." Seats Left</div>";
+		}
+ 
+ 
+		if($_product->getTypeId() == "configurable"){
+			$total = 0;
+			$ids = $_product->getTypeInstance()->getUsedProductIds();
+			foreach ($ids as $id){
+				$simpleproduct = Mage::getModel('catalog/product')->load($id);
+					$simpleproduct->getName()." - ".(int)Mage::getModel('cataloginventory/stock_item')->loadByProduct($simpleproduct)->getQty();
+					$total = $total + (int)Mage::getModel('cataloginventory/stock_item')->loadByProduct($simpleproduct)->getQty();
+			}
+			if ($total < 4) {
+				echo ("Only ".$total." Left!");
+			}
+		} ?>
+
+
         <?php if(!$_product->isGrouped()): ?>
         <div class="qty-wrapper">
             <label for="qty"><?php echo $this->__('Qty:') ?></label>
