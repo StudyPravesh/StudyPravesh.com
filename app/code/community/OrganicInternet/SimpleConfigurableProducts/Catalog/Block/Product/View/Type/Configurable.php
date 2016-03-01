@@ -17,7 +17,9 @@ class OrganicInternet_SimpleConfigurableProducts_Catalog_Block_Product_View_Type
                 "finalPrice" => $this->_registerJsPrice($this->_convertPrice($product->getFinalPrice()))
             );
 
-            if (Mage::getStoreConfig('SCP_options/product_page/change_name')) {
+            $childProducts[$productId]["productAboutCourse"] = $product->getAboutCourse();		//	S:VA	Update Product AboutCourse
+			
+			if (Mage::getStoreConfig('SCP_options/product_page/change_name')) {
                 $childProducts[$productId]["productName"] = $product->getName();
             }
             if (Mage::getStoreConfig('SCP_options/product_page/change_description')) {
@@ -71,6 +73,7 @@ class OrganicInternet_SimpleConfigurableProducts_Catalog_Block_Product_View_Type
         }
         $config['ajaxBaseUrl'] = Mage::getUrl('oi/ajax/');
         $config['productName'] = $p->getName();
+		$config['productAboutCourse'] = $p->getAboutCourse();		//	S:VA	Update Product AboutCourse
         $config['description'] = $this->helper('catalog/output')->productAttribute($p, $p->getDescription(), 'description');
         $config['shortDescription'] = $this->helper('catalog/output')->productAttribute($p, nl2br($p->getShortDescription()), 'short_description');
 
