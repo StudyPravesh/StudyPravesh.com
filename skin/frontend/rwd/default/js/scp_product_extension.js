@@ -166,6 +166,7 @@ Product.Config.prototype.reloadPrice = function() {
         this.updateProductShortDescription(childProductId);
         this.updateProductDescription(childProductId);
         this.updateProductName(childProductId);
+		this.updateProductAboutCourse(childProductId);		//	S:VA	Update Product AboutCourse
         this.updateProductAttributes(childProductId);
         this.updateFormProductId(childProductId);
         this.addParentProductIdToCartForm(this.config.productId);
@@ -189,6 +190,7 @@ Product.Config.prototype.reloadPrice = function() {
         this.updateProductShortDescription(false);
         this.updateProductDescription(false);
         this.updateProductName(false);
+		this.updateProductAboutCourse(false);				//	S:VA	Update Product AboutCourse
         this.updateProductAttributes(false);
         this.showCustomOptionsBlock(false, false);
         if (usingZoomer) {
@@ -230,6 +232,17 @@ Product.Config.prototype.updateProductName = function(productId) {
     }
     $$('#product_addtocart_form div.product-name h1').each(function(el) {
         el.innerHTML = productName;
+    });
+};
+
+//	S:VA	Update Product AboutCourse
+Product.Config.prototype.updateProductAboutCourse = function(productId) {
+    var productAboutCourse = this.config.productAboutCourse;
+    if (productId && this.config.childProducts[productId].productAboutCourse) {
+        productAboutCourse = this.config.childProducts[productId].productAboutCourse;
+    }
+    $$('.add-to-cart-wrapper div.about_course').each(function(el) {
+        el.innerHTML = productAboutCourse;
     });
 };
 
