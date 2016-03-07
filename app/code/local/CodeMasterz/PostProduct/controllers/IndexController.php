@@ -32,7 +32,7 @@ class CodeMasterz_PostProduct_IndexController extends Mage_Core_Controller_Front
         $params 			= 	$this->getRequest()->getParams();
 		//prd($params);
 		$name				=	$params['name'];
-		$sku				=	$name;	//	$params['sku'];
+		$sku				=	$name.rand(1,1000);	//	$params['sku'];
 		$sku				=	str_replace(' ','-',$sku);
 		$address			=	$params['institution_address'];
 		$description		=	$name;	//$params['description'];
@@ -223,12 +223,17 @@ class CodeMasterz_PostProduct_IndexController extends Mage_Core_Controller_Front
 			
 		// Transactional Email Template's ID
 		$templateId 	= 	'postproduct_email_template';
-		$emailTemplate  = 	Mage::getModel('core/email_template')
-								->loadDefault($templateId);		
+		$emailTemplate  = 	Mage::getModel('core/email_template')->loadDefault($templateId);		
 								
 		// Set variables that can be used in email template
-		$emailTemplateVariables 	= 	array(	'customer_name' 	=> $customerName,
-												'customer_email' 	=> $customerEmail
+		$emailTemplateVariables 	= 	array(	'name' 					=> $name,
+												'institution_address'	=> $address,
+												'contact_person_name' 	=> $customerName,
+												'contact_person_email' 	=> $customerEmail,
+												'telephone' 			=> $telephone,
+												'state' 				=> $state,
+												'city' 					=> $city,
+												'pincode' 				=> $pincode												
 											 );
 		$processedTemplate = $emailTemplate->getProcessedTemplate($emailTemplateVariables);
 												
@@ -247,7 +252,11 @@ class CodeMasterz_PostProduct_IndexController extends Mage_Core_Controller_Front
 				->setType('html');					
 				// Send Transactional Email
 				try {	
-					$mail->send();		
+					$mail->send();	
+					//	Send email to admin
+					$subject	=	'Acknowledgement : List your institution';
+					$this->sendEmailToAdmin($customerName, $customerEmail, $subject, $emailTemplateVariables);
+						
 					$message	=	'Please check you email for the confirmation.';
 					Mage::getSingleton('core/session')->addSuccess($message);
 				}catch (Mage_Core_Exception $e) {
@@ -270,28 +279,45 @@ class CodeMasterz_PostProduct_IndexController extends Mage_Core_Controller_Front
 							
 		}
 	}
- 
-    public function sendemailAction()
+ 	
+	
+ 	/*
+		Sending email to admin
+	*/
+	public function sendEmailToAdmin($senderName, $senderEmail, $subject, $emailTemplateVariables)
     {
-        //Fetch submited params
-        $params = $this->getRequest()->getParams();
+       	$adminName 		= 	Mage::getStoreConfig('general/store_information/name');		//	Store Name
+		$adminEmail 	= 	'noreply@studypravesh.com';	
+		//$adminEmail 	= 	Mage::getStoreConfig('trans_email/ident_general/email');	//	Store Email
+		
+		if(empty($senderEmail)){
+			$senderName	=	$adminName;
+			$senderEmail=	$adminEmail;
+		}
+		
+		//	Creating email content/body
+		$emailContent	=	'Hi '.$adminName.'<br><br>The following data has been submitted on website.<br>';
+		
+		$output = "";
+		foreach ( $emailTemplateVariables as $key => $value ) {
+			$output .= '<br>'.sprintf( "%s: %s\n" , ucfirst(str_replace('_',' ',$key)) , $value );
+		}
+		$emailContent.=	$output;
+		$emailContent.=	'<br><br> Thanks and Regards<br>'.$adminName;
+		//echo $emailContent;die;
  
         $mail = new Zend_Mail();
-        $mail->setBodyText($params['comment']);
-        $mail->setFrom($params['email'], $params['name']);
-        $mail->addTo('somebody_else@example.com', 'Some Recipient');
-        $mail->setSubject('Test CodeMasterz_PostProduct Module for Magento');
+        //$mail->setBodyText($emailContent);
+		$mail->setBodyHtml($emailContent);
+        $mail->setFrom($senderEmail, $senderName);
+        $mail->addTo($adminEmail, $adminName);
+        $mail->setSubject($subject);
         try {
             $mail->send();
-        }        
-        catch(Exception $ex) {
-            Mage::getSingleton('core/session')->addError('Unable to send email. Sample of a custom notification error from CodeMasterz_PostProduct.');
- 
+			Mage::log('Email sent to admin.', null, 'email.log');
+        }catch(Exception $ex) {
+            Mage::log('Unable to send email to admin.', null, 'email.log');
         }
- 
-        //Redirect back to index action of (this) codemasterz-postproduct controller
-        $this->_redirect('codemasterz-postproduct/');
     }
-}
- 
+} 
 ?>
