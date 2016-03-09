@@ -27,7 +27,86 @@ class CodeMasterz_PostProduct_IndexController extends Mage_Core_Controller_Front
         $this->renderLayout();
     }
 	
+	/*
+		Sending emails without saving prodcut in db
+	*/
 	public function addProductAction(){
+		//Fetch submited params
+        $params 			= 	$this->getRequest()->getParams();
+		//prd($params);
+		$name				=	$params['name'];
+		$address			=	$params['institution_address'];
+		//	Customer Details
+		$customerName		=	$params['contact_person_name'];
+		$customerEmail		=	$params['contact_person_email'];
+		$telephone			=	$params['telephone'];
+		$state				=	$params['state'];
+		$city				=	$params['city'];
+		$pincode			=	$params['pincode'];
+		
+		try {
+						
+		// Transactional Email Template's ID
+		$templateId 	= 	'postproduct_email_template';
+		$emailTemplate  = 	Mage::getModel('core/email_template')->loadDefault($templateId);		
+								
+		// Set variables that can be used in email template
+		$emailTemplateVariables 	= 	array(	'name' 					=> $name,
+												'institution_address'	=> $address,
+												'contact_person_name' 	=> $customerName,
+												'contact_person_email' 	=> $customerEmail,
+												'telephone' 			=> $telephone,
+												'state' 				=> $state,
+												'city' 					=> $city,
+												'pincode' 				=> $pincode												
+											 );
+		$processedTemplate = $emailTemplate->getProcessedTemplate($emailTemplateVariables);
+												
+		
+		$senderName 	= 	Mage::getStoreConfig('general/store_information/name');
+		$senderEmail 	= 	Mage::getStoreConfig('trans_email/ident_general/email');
+		
+		$mail = Mage::getModel('core/email')
+				->setToName($customerName)
+				->setToEmail($customerEmail)
+				//->setToEmail('vaseemansari007@gmail.com')
+				->setBody($processedTemplate)
+				->setSubject('Thank you for listing an institution at '.$senderName)
+				->setFromEmail($senderEmail)
+				->setFromName($senderName)
+				->setType('html');					
+				// Send Transactional Email
+				try {	
+					$mail->send();	
+					//	Send email to admin
+					$subject	=	'Acknowledgement : List your institution';
+					$this->sendEmailToAdmin($customerName, $customerEmail, $subject, $emailTemplateVariables);
+						
+					$message	=	'Congratulation. Your institution is added successfully. We will contact you very soon. Please check you email for the confirmation.';
+					Mage::getSingleton('core/session')->addSuccess($message);
+				}catch (Mage_Core_Exception $e) {
+					$this->_getSession()->addError($e->getMessage());
+				} catch (Exception $e) {
+					$this->_getSession()->addError($this->__('Oops! There is some issue in sending an acknowledgement email to you. Please wait while we are working on it.'));
+				}
+				
+			echo Mage::app()->getFrontController()->getResponse()->setRedirect(Mage::getUrl('*/*/index', array( 'param'=>$this->getRequest()->getParam('param') )));die;
+		}
+		catch (Exception $ex) {
+			//print_r($ex);die;
+			//Handle the error
+			$message	=	'Sorry there is some error while adding the institution. Please try adding the institution again or call our customer support.';
+			Mage::getSingleton('core/session')->addError($message);
+			echo Mage::app()->getFrontController()->getResponse()->setRedirect(Mage::getUrl('*/*/index', array( 'param'=>$this->getRequest()->getParam('param') )));die;
+							
+		}
+	}
+	
+	
+	/*
+		Saving product in db
+	*/
+	public function oldaddProductAction(){
 		//Fetch submited params
         $params 			= 	$this->getRequest()->getParams();
 		//prd($params);
