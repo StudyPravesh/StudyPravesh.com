@@ -66,14 +66,20 @@
                 <?php echo $this->getChildHtml('media') ?>
             </div>
 
-            <div class="pull-left" style="width:33.333333">
+            <div class="atc-block pull-left">
             <div class="product-shop full-width">
                 <div class="price-info">
-                    <?php echo $this->getPriceHtml($_product); ?>
-                    <?php echo $this->getChildHtml('bundle_prices') ?>
-                    <?php echo $this->getTierPriceHtml() ?>
+                	<?php 
+					/*	S:VA	Call for Price 	*/
+					if($_product->getPrice()<100){?>
+                    	<div class="price-box"><span class="regular-price"><span class="price">Call For Scholarship</span></span></div>
+					<?php }else{?>  
+						<?php echo $this->getPriceHtml($_product); ?>
+                        <?php echo $this->getChildHtml('bundle_prices') ?>
+                        <?php echo $this->getTierPriceHtml() ?>
+                   	<?php } ?>
                 </div>
-
+                
                 <div class="extra-info">
                     <?php echo $this->getReviewsSummaryHtml($_product, 'default', false)?>
                     <?php echo $this->getChildHtml('product_type_availability'); ?>
@@ -90,6 +96,7 @@
             </div>
 
             <div class="add-to-cart-wrapper">
+            	<div class="about_course"><?php echo $_helper->productAttribute($_product, $_product->getAboutCourse(), 'about_course') ?></h1></div>
                 <?php echo $this->getChildHtml('product_type_data') ?>
                 <?php echo $this->getChildHtml('extrahint') ?>
 
