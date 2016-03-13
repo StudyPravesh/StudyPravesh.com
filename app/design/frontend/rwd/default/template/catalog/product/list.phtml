@@ -88,7 +88,12 @@
                     </div>
                     <div class="full-width mT10">
 						<div class="half-width">
-							<?php echo $this->getPriceHtml($_product, true) ?>
+							<?php /*	S:VA	Call for Price 	*/
+							if($_product->getPrice()<100){?>
+								<div class="price-box"><span class="regular-price"><span class="price">Call For Scholarship</span></span></div>
+							<?php }else{?>                      
+								<?php echo $this->getPriceHtml($_product, true) ?>
+							<?php } ?>
 						</div>
 						<div class="product-secondary">
 							<?php if(!$_product->canConfigure() && $_product->isSaleable()): ?>
@@ -147,7 +152,13 @@
                         }
                     }
                     ?>
-                    <?php echo $this->getPriceHtml($_product, true) ?>
+                    <?php /*	S:VA	Call for Price 	*/
+					if($_product->getPrice()<100){?>
+                    	<div class="price-box"><span class="regular-price"><span class="price">Call For Scholarship</span></span></div>
+					<?php }else{?>                      
+	                    <?php echo $this->getPriceHtml($_product, true) ?>
+                    <?php } ?>
+                    
                     <?php if($_product->getRatingSummary()): ?>
                     <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
                     <?php endif; ?>
