@@ -28,7 +28,7 @@
                 <tr>
                     <td class="email-heading">
                         <h1>Thank you for your admission from {{var store.getFrontendName()}}.</h1>
-                        <p>Once your package ships we will send an email with a link to track your order. Your admission summary is below. Thank you again for your business.</p>
+                        <p>Your admission summary is below. Thank you again for your admission.</p>
                     </td>
                     <td class="store-info">
                         <h4>Admission Questions?</h4>
@@ -51,7 +51,7 @@
     </tr>
     <tr>
         <td class="order-details">
-            <h3>Your admission <span class="no-link">#{{var order.increment_id}}</span></h3>
+            <h3>Your admission id<span class="no-link">#{{var order.increment_id}}</span></h3>
             <p>Placed on {{var order.getCreatedAtFormated('long')}}</p>
         </td>
     </tr>
