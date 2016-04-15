@@ -35,7 +35,7 @@ class IWD_Opc_IndexController extends Mage_Checkout_Controller_Action{
 		
 		//	S:VA
 		if (!Mage::getSingleton('customer/session')->authenticate($this)) {
-			Mage::getSingleton('customer/session')->addError($this->__('Please create account/login to complete the admission process.'));
+			Mage::getSingleton('customer/session')->addError($this->__('Please create an account/login to complete the admission process.'));
 			$currentUrl = Mage::helper('core/url')->getCurrentUrl();
 			Mage::getSingleton('customer/session')->setBeforeAuthUrl($currentUrl);
 			$this->setFlag('', self::FLAG_NO_DISPATCH, true);
