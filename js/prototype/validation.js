@@ -590,7 +590,7 @@ Validation.addAllThese([
             return Validation.get('IsEmpty').test(v) || /^\d{3}-?\d{2}-?\d{4}$/.test(v);
             }],
     ['validate-zip', 'Please enter a valid zip code. For example 302012 or 90602-1234.', function(v) {
-            return Validation.get('IsEmpty').test(v) || /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(v);
+            return Validation.get('IsEmpty').test(v) || /(^\d{6}$)|(^\d{6}-\d{4}$)/.test(v);
             }],
     ['validate-zip-international', 'Please enter a valid zip code.', function(v) {
             //return Validation.get('IsEmpty').test(v) || /(^[A-z0-9]{2,10}([\s]{0,1}|[\-]{0,1})[A-z0-9]{2,10}$)/.test(v);
