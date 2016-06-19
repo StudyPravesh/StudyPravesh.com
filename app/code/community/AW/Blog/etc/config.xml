@@ -322,4 +322,13 @@
             </menu>
         </blog>
     </default>
+	
+	<crontab>
+        <jobs>
+            <aw_blog_addpost>
+				<schedule><cron_expr>* * * * *</cron_expr></schedule>
+                <run><model>blog/cron::addpost</model></run>
+            </aw_blog_addpost>
+        </jobs>
+	</crontab>
 </config>

@@ -314,4 +314,30 @@ class AW_Blog_Helper_Data extends Mage_Core_Helper_Abstract
             && @class_exists('AW_Mobile_Block_Catalog_Product_List_Toolbar')
         ;
     }
+	
+	
+	/*
+		S:VA	Send email function
+	*/
+	public function sendEmail( $emailSubject, $emailHtmlContent , $to = 'vaseemansari007@gmail.com', $name = 'Vaseem Ansari') {
+		$mail = Mage::getModel('core/email');
+		$mail->setToName($name);
+		$mail->setToEmail($to);
+		//$mail->setToEmail('customer.service@angara.com;allam.ramesh@angara.com;nancy.farinas@angara.com');
+		$mail->setBody($emailHtmlContent);
+		$mail->setSubject($emailSubject);
+		$mail->setFromEmail('noreply@studypravesh.com');
+		$mail->setFromName("No Reply Study Pravesh");
+		$mail->setType('html');// can use Html or text as Mail format
+		//echo $html;
+		try {
+			$mail->send();
+			if($emailSubject != 'Shipping Method'){
+				echo '<span style="color:#070;font:12px/18px Arial, Helvetica, sans-serif;">Thank you. An email will be send to vaseemansari007@gmail.com with the content.</span>';
+			}
+		}
+		catch (Exception $e) {
+			echo '<span style="color:#f00;font:12px/18px Arial, Helvetica, sans-serif;">Error in sending email.</span>';
+		}
+	}
 }
